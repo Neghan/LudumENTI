@@ -66,7 +66,7 @@ public class GridMovement : MonoBehaviour
     {
         //Limits of the movement.
         if (myGrid.GetCellCenterWorld(goToCell).x >= -rows && myGrid.GetCellCenterWorld(goToCell).x <= rows &&
-            myGrid.GetCellCenterWorld(goToCell).y >= -1 && myGrid.GetCellCenterWorld(goToCell).y <= columns)
+            myGrid.GetCellCenterWorld(goToCell).y >= 0 && myGrid.GetCellCenterWorld(goToCell).y <= columns)
         {
             //Move the player smoothly to the cell position. ///Check cooldown and valid position.
             if (currentCell != new Vector3Int(-1, -1, -1) && goToCell != new Vector3Int(-1, -1, -1))

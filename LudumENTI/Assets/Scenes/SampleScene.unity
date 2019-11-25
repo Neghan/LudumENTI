@@ -395,27 +395,32 @@ PrefabInstance:
     - target: {fileID: 6896152108324001239, guid: 6e2a8532aa422744398f8e2e608404c6,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 6896152108324001239, guid: 6e2a8532aa422744398f8e2e608404c6,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6896152108324001239, guid: 6e2a8532aa422744398f8e2e608404c6,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6896152108324001239, guid: 6e2a8532aa422744398f8e2e608404c6,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6896152108324001239, guid: 6e2a8532aa422744398f8e2e608404c6,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896152108324001239, guid: 6e2a8532aa422744398f8e2e608404c6,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1514691644099827115, guid: 6e2a8532aa422744398f8e2e608404c6,
         type: 3}
@@ -440,6 +445,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Right Arm
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871130236366580845, guid: 6e2a8532aa422744398f8e2e608404c6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233655048370021961, guid: 6e2a8532aa422744398f8e2e608404c6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.7299986
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233655048370021961, guid: 6e2a8532aa422744398f8e2e608404c6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 13.46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e2a8532aa422744398f8e2e608404c6, type: 3}
@@ -639,5 +659,10 @@ PrefabInstance:
       propertyPath: myGrid
       value: 
       objectReference: {fileID: 2005445843}
+    - target: {fileID: 3428134989228746689, guid: 841dff7313bbb9145989d163409a67ca,
+        type: 3}
+      propertyPath: movementCoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 841dff7313bbb9145989d163409a67ca, type: 3}
