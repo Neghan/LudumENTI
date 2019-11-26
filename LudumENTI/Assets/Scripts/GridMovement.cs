@@ -15,13 +15,15 @@ public class GridMovement : MonoBehaviour
     public Vector3Int startPlayerPos;
 
     private float coolDown = 2.0f;
-    private bool canMove;
+    public bool canMove;
 
     public float movementCoolDown = 2.0f;
     public  float movementSpeed = 1.0f;
 
-    private Vector3Int currentCell = new Vector3Int(-1, -1, -1);
+    public Vector3Int currentCell = new Vector3Int(-1, -1, -1);
     private Vector3Int goToCell = new Vector3Int(-1, -1, -1);
+
+
 
     private void Move()
         {
