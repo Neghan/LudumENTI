@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GridMovement : MonoBehaviour
 {
@@ -23,10 +24,16 @@ public class GridMovement : MonoBehaviour
     private Vector3Int currentCell = new Vector3Int(-1, -1, -1);
     private Vector3Int goToCell = new Vector3Int(-1, -1, -1);
 
+    /////////////ARREGLAR/////////////
+    private bool checkCollisionTileTypeWalkable()
+    {
+        return true;
+    }
+
     private void Move()
         {
             //left
-            if (Input.GetKeyDown(KeyCode.A)&&canMove)
+            if (Input.GetKeyDown(KeyCode.A)&& canMove && checkCollisionTileTypeWalkable())
             {
                 //Move the player to the left cell position;
                 currentCell = myGrid.WorldToCell(transform.position);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 18795670422488968}
   - component: {fileID: 18795670422488971}
   - component: {fileID: 9170332426795571551}
+  - component: {fileID: 1124753426966277139}
   m_Layer: 5
   m_Name: ButtonSin
   m_TagString: Untagged
@@ -127,6 +128,32 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1124753426966277139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18795670422488973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c479add217b4a499be23f61609aac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SacImages:
+  - {fileID: 21300000, guid: 1694da3f09e63e740b43b752db6dcebc, type: 3}
+  - {fileID: 21300000, guid: cc57b5433caba8b4783e6658b6909994, type: 3}
+  - {fileID: 21300000, guid: 620ee5f940c48f447896f3ff3aa436a5, type: 3}
+  - {fileID: 21300000, guid: 46a8d8c5ff1c2d449b39bdc90c4a69ea, type: 3}
+  - {fileID: 21300000, guid: c91eb15c07b0cf943ab25d3b696884aa, type: 3}
+  - {fileID: 21300000, guid: ac580cb5aa3e1594db5e4802089e61fd, type: 3}
+  SacTexts:
+  - Left Foot
+  - Right Foot
+  - Left Hand
+  - Right Hand
+  - Left Eye
+  - Right Eye
 --- !u!1 &18795670941510686
 GameObject:
   m_ObjectHideFlags: 0
