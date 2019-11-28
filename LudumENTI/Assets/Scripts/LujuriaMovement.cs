@@ -14,9 +14,10 @@ public class LujuriaMovement : MonoBehaviour
     public Grid myGrid;
     public Vector3Int startLujuriaPos;
 
-    //private float coolDown = 2.0f;
-    private bool canMove;
-    private bool moved;
+    private float coolDown = 2.0f;
+    public float movementCoolDown = 2.0f;
+    private bool canMove = false;
+  
     //public float movementCoolDown = 2.0f;
     public float movementSpeed = 1.0f;
 
@@ -25,11 +26,11 @@ public class LujuriaMovement : MonoBehaviour
 
     private GameObject player;
 
-     private Vector3Int WhereIsPlayer()
+    private Vector3Int WhereIsPlayer()
     {
-        Vector3Int playerPos = player.GetComponent<GridMovement>().currentCell;
+        Vector3Int playerPos = myGrid.WorldToCell(player.GetComponent<GridMovement>().transform.position);
         //Jugador a la izquierda
-        if (currentCell.x>playerPos.x)
+        if (currentCell.x > playerPos.x)
         {
             return new Vector3Int(-Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
         }
@@ -48,20 +49,16 @@ public class LujuriaMovement : MonoBehaviour
         {
             return new Vector3Int(0, Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
         }
-        return new Vector3Int(0,0,0);
+        return new Vector3Int(0, 0, 0);
     }
     private void Move()
     {
+        currentCell = myGrid.WorldToCell(transform.position);
         //left
-        if (!player.GetComponent<GridMovement>().canMove)
-        {
-            //Move the player to the left cell position;
-            currentCell = myGrid.WorldToCell(transform.position);
-            goToCell = currentCell+WhereIsPlayer();
-            //coolDown = movementCoolDown;
-        }
-        
+       // Debug.Log(Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position));
+        if (Vector3.Distance(player.GetComponent<GridMovement>().transform.position,transform.position) >=1)
         SimulateMovement(currentCell, goToCell);
+
     }
     private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
     {
@@ -72,9 +69,7 @@ public class LujuriaMovement : MonoBehaviour
             //Move the player smoothly to the cell position. ///Check cooldown and valid position.
             if (currentCell != new Vector3Int(-1, -1, -1) && goToCell != new Vector3Int(-1, -1, -1))
             {
-                //Cooldown Move
-               // coolDown -= Time.deltaTime;
-
+                
                 //Interpolate the movement
                 transform.position = Vector3.MoveTowards(transform.position, myGrid.GetCellCenterWorld(goToCell), movementSpeed * Time.deltaTime);
             }
@@ -82,19 +77,49 @@ public class LujuriaMovement : MonoBehaviour
         }
 
     }
-    
 
+    void coolDownHandler()
+    {
+
+        if (coolDown > 0.0f)
+        {
+            canMove = false;
+            coolDown -= Time.deltaTime;
+        }
+        if (coolDown < 0.0f)
+        {
+            coolDown = 0.0f;
+        }
+
+        if (coolDown == 0.0f)
+        {
+            
+            canMove = true;
+        }
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+        coolDown = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-       // coolDownHandler();
+       
 
+        if (!player.GetComponent<GridMovement>().canMove && canMove)
+        {
+                        
+            goToCell = currentCell + WhereIsPlayer();
+            coolDown = movementCoolDown;
+            
+        }
+
+        coolDownHandler();
+        
         Move();
     }
 }
