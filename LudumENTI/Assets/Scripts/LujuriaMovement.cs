@@ -4,62 +4,107 @@ using UnityEngine;
 
 public class LujuriaMovement : MonoBehaviour
 {
+    //Grid
     [Range(0, 8)]
     public int rows;
 
     [Range(0, 7)]
     public int columns;
 
-   
     public Grid myGrid;
+
+
+    private int life = 5;
+
+    //Variables Publicas
     public Vector3Int startLujuriaPos;
-
-    private float coolDown = 2.0f;
     public float movementCoolDown = 2.0f;
-    private bool canMove = false;
-
-
-    private bool Attacking = false;
-    //public float movementCoolDown = 2.0f;
     public float movementSpeed = 1.0f;
 
+    //Movimiento
+    private float coolDown = 2.0f;
+    private bool canMove = false;
+   
     private Vector3Int currentCell = new Vector3Int(-1, -1, -1);
     private Vector3Int goToCell = new Vector3Int(-1, -1, -1);
 
+    //Ataque
+    private bool Attacking = false;
+    private bool AlreadyWarning = false;
+    private bool AlreadyAttack = false;
+    private bool showWarning = false;
+    public GameObject attackEnemy;
+    GameObject GO, GO2, GO3, GO4, GO5, GO6, GO7, GO8;
+    Vector3Int LeftCell; //Izquierda
+    Vector3Int DownCell; //Abajo
+    Vector3Int DownLeftCell; //Abajo-Izquierda
+    Vector3Int DownRightCell; //Abajo-Derecha
+    Vector3Int RightCell; // Derecha
+    Vector3Int RightDownCell; // Derecha-Abajo 
+    Vector3Int UpCell; // Arriba
+    Vector3Int UpLeftCell; // Arriba-Izquierda
+    Vector3Int UpRightCell; // Arriba-Derecha
+
+    //Referencias
     private GameObject player;
+    Vector3Int playerPos;
+
+
 
     private Vector3Int WhereIsPlayer()
     {
-        Vector3Int playerPos = myGrid.WorldToCell(player.GetComponent<GridMovement>().transform.position);
+        playerPos = myGrid.WorldToCell(player.GetComponent<GridMovement>().transform.position);
 
-        if (Vector3.Distance(currentCell,playerPos)>1) {
-            //Jugador a la izquierda
-            if (currentCell.x > playerPos.x)
+       LeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
+       DownCell = new Vector3Int(currentCell.x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo
+       DownLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierda
+       DownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derecha
+       RightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derecha
+       RightDownCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Derecha-Abajo 
+       UpCell = new Vector3Int(currentCell.x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba
+       UpLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Izquierda
+       UpRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Derecha
+
+        if (!AlreadyAttack && ((playerPos==LeftCell)|| (playerPos == DownCell) || (playerPos == DownLeftCell) || (playerPos == DownRightCell) || (playerPos == RightCell) || (playerPos == RightDownCell) || (playerPos == UpCell) || (playerPos == UpLeftCell) || (playerPos == UpRightCell))) {
+            if (!AlreadyWarning)
             {
-                return new Vector3Int(-Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+                Attacking = true;
+                AlreadyWarning = true;
             }
-            //Jugador a la derecha
-            else if (currentCell.x < playerPos.x)
+            else
             {
-                return new Vector3Int(Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
-            }
-            //Jugador abajo
-            else if (currentCell.y > playerPos.y)
-            {
-                return new Vector3Int(0, -Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
-            }
-            //Jugador arriba
-            else if (currentCell.y < playerPos.y)
-            {
-                return new Vector3Int(0, Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
+                AlreadyAttack = true;
             }
             return new Vector3Int(0, 0, 0);
         }
         else
         {
-            Attacking = true;
+            //Jugador a la izquierda
+            if (currentCell.x > playerPos.x)
+            {
+                AlreadyAttack = false;
+                return new Vector3Int(-Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+            }
+            //Jugador a la derecha
+            else if (currentCell.x < playerPos.x)
+            {
+                AlreadyAttack = false;
+                return new Vector3Int(Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+            }
+            //Jugador abajo
+            else if (currentCell.y > playerPos.y)
+            {
+                AlreadyAttack = false;
+                return new Vector3Int(0, -Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
+            }
+            //Jugador arriba
+            else if (currentCell.y < playerPos.y)
+            {
+                AlreadyAttack = false;
+                return new Vector3Int(0, Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
+            }
+            AlreadyAttack = false;
             return new Vector3Int(0, 0, 0);
-            
         }
     }
     private void Move()
@@ -72,18 +117,47 @@ public class LujuriaMovement : MonoBehaviour
             if (Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position) >= 1)
                 SimulateMovement(currentCell, goToCell);
         }
-        else
+       
+
+    }
+
+    private void Attack()
+    {
+        if (Attacking)
         {
-         //   Attack();
+            if (AlreadyWarning && !AlreadyAttack && !showWarning) { 
+                currentCell = myGrid.WorldToCell(transform.position);
+
+                GO2 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+                GO7 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
+                showWarning = true;
+            }
+            else if(AlreadyAttack) {
+                if (playerPos == DownCell || playerPos == UpCell)
+                {
+                    player.GetComponent<GridMovement>().TakeDamage();
+                   
+                }
+                Destroy(GO2.gameObject);
+                Destroy(GO7.gameObject);
+                Attacking = false;
+                AlreadyWarning = false;
+                AlreadyAttack = false;
+                showWarning = false;
+            }
+            
         }
 
     }
 
-    /*private void Attack()
+    public void TakeDamage()
     {
-       
+        life--;
+        if (life <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
-    */
     private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
     {
         //Limits of the movement.
@@ -143,7 +217,7 @@ public class LujuriaMovement : MonoBehaviour
         }
 
         coolDownHandler();
-        
+        Attack();
         Move();
     }
 }
