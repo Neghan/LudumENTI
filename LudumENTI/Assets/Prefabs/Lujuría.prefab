@@ -20,6 +20,8 @@ MonoBehaviour:
   movementSpeed: 5
   attackEnemy: {fileID: 7782427043257765064, guid: cc9cd36fa21e3654a8a9bd51b0b10ba1,
     type: 3}
+  warningEnemy: {fileID: 432291115882253143, guid: 604865fc3f028a448a3c501a7c387948,
+    type: 3}
 --- !u!1001 &554915058461105928
 PrefabInstance:
   m_ObjectHideFlags: 0
