@@ -10,14 +10,16 @@ public class LujuriaMovement : MonoBehaviour
     [Range(0, 7)]
     public int columns;
 
-
+   
     public Grid myGrid;
     public Vector3Int startLujuriaPos;
 
     private float coolDown = 2.0f;
     public float movementCoolDown = 2.0f;
     private bool canMove = false;
-  
+
+
+    private bool Attacking = false;
     //public float movementCoolDown = 2.0f;
     public float movementSpeed = 1.0f;
 
@@ -29,37 +31,59 @@ public class LujuriaMovement : MonoBehaviour
     private Vector3Int WhereIsPlayer()
     {
         Vector3Int playerPos = myGrid.WorldToCell(player.GetComponent<GridMovement>().transform.position);
-        //Jugador a la izquierda
-        if (currentCell.x > playerPos.x)
-        {
-            return new Vector3Int(-Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+
+        if (Vector3.Distance(currentCell,playerPos)>1) {
+            //Jugador a la izquierda
+            if (currentCell.x > playerPos.x)
+            {
+                return new Vector3Int(-Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+            }
+            //Jugador a la derecha
+            else if (currentCell.x < playerPos.x)
+            {
+                return new Vector3Int(Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+            }
+            //Jugador abajo
+            else if (currentCell.y > playerPos.y)
+            {
+                return new Vector3Int(0, -Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
+            }
+            //Jugador arriba
+            else if (currentCell.y < playerPos.y)
+            {
+                return new Vector3Int(0, Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
+            }
+            return new Vector3Int(0, 0, 0);
         }
-        //Jugador a la derecha
-        else if (currentCell.x < playerPos.x)
+        else
         {
-            return new Vector3Int(Vector3Int.CeilToInt(myGrid.cellSize).x, 0, 0);
+            Attacking = true;
+            return new Vector3Int(0, 0, 0);
+            
         }
-        //Jugador abajo
-        else if (currentCell.y > playerPos.y)
-        {
-            return new Vector3Int(0, -Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
-        }
-        //Jugador arriba
-        else if (currentCell.y < playerPos.y)
-        {
-            return new Vector3Int(0, Vector3Int.CeilToInt(myGrid.cellSize).y, 0);
-        }
-        return new Vector3Int(0, 0, 0);
     }
     private void Move()
     {
-        currentCell = myGrid.WorldToCell(transform.position);
-        //left
-       // Debug.Log(Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position));
-        if (Vector3.Distance(player.GetComponent<GridMovement>().transform.position,transform.position) >=1)
-        SimulateMovement(currentCell, goToCell);
+        if (!Attacking)
+        {
+            currentCell = myGrid.WorldToCell(transform.position);
+            //left
+            // Debug.Log(Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position));
+            if (Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position) >= 1)
+                SimulateMovement(currentCell, goToCell);
+        }
+        else
+        {
+         //   Attack();
+        }
 
     }
+
+    /*private void Attack()
+    {
+       
+    }
+    */
     private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
     {
         //Limits of the movement.
