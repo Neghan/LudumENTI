@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class GridMovement : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class GridMovement : MonoBehaviour
     private Vector3Int currentCell = new Vector3Int(-1, -1, -1);
     private Vector3Int goToCell = new Vector3Int(-1, -1, -1);
 
+    private int life = 5;
+    public bool sacrificioBrazoDerecho = false;
+    public bool sacrificioBrazoIzquierdo = false;
+    public bool sacrificioPiernaIzquierda = false;
+    public bool sacrificioPiernaDerecha = false;
+    GameObject GO, GO2, GO3, GO4, GO5;
+    
     /////////////ARREGLAR/////////////
     private bool checkCollisionTileTypeWalkable()
     {
@@ -60,30 +68,148 @@ public class GridMovement : MonoBehaviour
     private void Attack()
     {
         currentCell = myGrid.WorldToCell(transform.position);
-        
+   
+
         Debug.Log(currentCell);
         Vector3Int LeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
         Vector3Int DownCell = new Vector3Int(currentCell.x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo
+        Vector3Int DownLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierda
+        Vector3Int DownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derecha
         Vector3Int RightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derecha
+        Vector3Int RightDownCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Derecha-Abajo 
         Vector3Int UpCell = new Vector3Int(currentCell.x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba
+        Vector3Int UpLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Izquierda
+        Vector3Int UpRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Derecha
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             switch (direction)
             {
-                case 1:
-                    GameObject GO = Instantiate(attackPlayer,myGrid.GetCellCenterWorld(LeftCell), transform.rotation);
+                case 1: //Atacar a la izquierda
+                    //Sin brazos
+                     
+                     GO = Instantiate(attackPlayer,myGrid.GetCellCenterWorld(LeftCell), transform.rotation);
+                    //Sin brazo izquierdo
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        GO2 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+                        GO3 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpLeftCell), transform.rotation);
+                    }
+                    //Sin brazo derecho
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        GO4 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
+                        GO5 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(DownLeftCell), transform.rotation);
+                    }
+
                     //CheckDamage()                    
                     Destroy(GO.gameObject,0.5f);
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        Destroy(GO2.gameObject, 0.5f);
+                        Destroy(GO3.gameObject, 0.5f);
+                    }
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        Destroy(GO4.gameObject, 0.5f);
+                        Destroy(GO5.gameObject, 0.5f);
+                    }
                     break;
-                case 2:
-                    
+
+
+                case 2: //Atacar hacia abajo
+                    //Sin brazos
+                    GO = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
+                    //Sin brazo izquierdo
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        GO2 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(LeftCell), transform.rotation);
+                        GO3 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(DownLeftCell), transform.rotation);
+                    }
+                    //Sin brazo derecho
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        GO4 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(RightCell), transform.rotation);
+                        GO5 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(RightDownCell), transform.rotation);
+                    }
+
+
+                    Destroy(GO.gameObject, 0.5f);
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        Destroy(GO2.gameObject, 0.5f);
+                        Destroy(GO3.gameObject, 0.5f);
+                    }
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        Destroy(GO4.gameObject, 0.5f);
+                        Destroy(GO5.gameObject, 0.5f);
+                    }
+
                     break;
-                case 3:
-                    
+
+                case 3: //Atacar a la derecha
+
+                    //Sin brazos
+                    GO = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(RightCell), transform.rotation);
+                    //Sin brazo izquierdo
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        GO2 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
+                        GO3 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(DownRightCell), transform.rotation);
+                    }
+                    //Sin brazo derecho
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        GO4 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+                        GO5 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpRightCell), transform.rotation);
+                    }
+
+
+                    Destroy(GO.gameObject, 0.5f);
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        Destroy(GO2.gameObject, 0.5f);
+                        Destroy(GO3.gameObject, 0.5f);
+                    }
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        Destroy(GO4.gameObject, 0.5f);
+                        Destroy(GO5.gameObject, 0.5f);
+                    }
+
                     break;
-                case 0:
-                    Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+
+                case 0: //Atacar hacia arriba
+
+                    //Sin brazos
+                    GO = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+                    //Sin brazo izquierdo
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        GO2 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(RightCell), transform.rotation);
+                        GO3 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpRightCell), transform.rotation);
+                    }
+                    //Sin brazo derecho
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        GO4 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(LeftCell), transform.rotation);
+                        GO5 = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(UpLeftCell), transform.rotation);
+                    }
+
+
+                    Destroy(GO.gameObject, 0.5f);
+                    if (!sacrificioBrazoDerecho)
+                    {
+                        Destroy(GO2.gameObject, 0.5f);
+                        Destroy(GO3.gameObject, 0.5f);
+                    }
+                    if (!sacrificioBrazoIzquierdo)
+                    {
+                        Destroy(GO4.gameObject, 0.5f);
+                        Destroy(GO5.gameObject, 0.5f);
+                    }
+
                     break;
 
             }
@@ -91,10 +217,24 @@ public class GridMovement : MonoBehaviour
 
     }
 
+    private void TakeDamage()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            life--;
+
+            if(life <=0)
+            {
+                Destroy(this.gameObject);
+                SceneManager.LoadScene(0);
+            }
+        }
+    }
+
     private void Move()
         {
         //left
-        if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable())
+        if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable() && !sacrificioPiernaIzquierda)
         {
             //Move the player to the left cell position;
             currentCell = myGrid.WorldToCell(transform.position);
@@ -111,7 +251,7 @@ public class GridMovement : MonoBehaviour
             coolDown = movementCoolDown;
             }
             //right
-            else if (Input.GetKeyDown(KeyCode.D) && canMove)
+            else if (Input.GetKeyDown(KeyCode.D) && canMove && !sacrificioPiernaDerecha)
             {
                 //Move the player to the right cell position;
                 currentCell = myGrid.WorldToCell(transform.position);
@@ -125,7 +265,7 @@ public class GridMovement : MonoBehaviour
             seeDirectionMoving(direction);
 
             coolDown = movementCoolDown;
-        }
+            }
             //up
             else if (Input.GetKeyDown(KeyCode.W) && canMove)
             {
@@ -134,7 +274,7 @@ public class GridMovement : MonoBehaviour
                 
                 seeDirectionMoving(direction);
                 coolDown = movementCoolDown;
-        }
+            }
             //down
             else if (Input.GetKeyDown(KeyCode.S) && canMove)
             {
@@ -206,6 +346,50 @@ public class GridMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            life--;
+
+            if (life <= 0)
+            {
+                Destroy(this.gameObject);
+                SceneManager.LoadScene(0);
+            }
+        }
+    }
+
+    public void sacrificeDone(int part)
+    {
+        switch(part)
+        {
+            case 0:
+                //Pierna Izquierda
+                sacrificioPiernaIzquierda = true;
+                break;
+            case 1:
+                //Pierna Derecha
+                sacrificioPiernaDerecha = true;
+                break;
+            case 2:
+                //Brazo Izquierdo
+                sacrificioBrazoIzquierdo = true;
+                break;
+            case 3:
+                //Brazo Derecho
+                sacrificioBrazoDerecho = true;
+                break;
+            case 4:
+                //Ojo Izquierdo
+                break; 
+            case 5:
+               //Ojo Derecho
+                break;
+            default:
+                break;
+        }
+    }
 
     void Start()
     {
@@ -220,8 +404,12 @@ public class GridMovement : MonoBehaviour
         //Checks if you are able to move.
         coolDownHandler();
 
+        if(sacrificioPiernaIzquierda && sacrificioPiernaDerecha)
+        {
+            sacrificioPiernaDerecha = sacrificioPiernaIzquierda = false;
+        }
         Attack();
-
+        TakeDamage();
         Move();
     }
 }
