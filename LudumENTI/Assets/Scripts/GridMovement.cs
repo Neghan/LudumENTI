@@ -13,7 +13,8 @@ public class GridMovement : MonoBehaviour
     public int columns;
 
     public GameObject attackPlayer;
-
+    public GameObject CegueraDer;
+    public GameObject CegueraIzq;
     public Grid myGrid;
     public Vector3Int startPlayerPos;
 
@@ -385,10 +386,12 @@ public class GridMovement : MonoBehaviour
                     sacrificioBrazoDerecho = true;
                     break;
                 case 4:
-                    //Ojo Izquierdo
+                //Ojo Izquierdo
+                CegueraIzq.SetActive(true);
                     break;
                 case 5:
-                    //Ojo Derecho
+                //Ojo Derecho
+                CegueraDer.SetActive(true);
                     break;
                 default:
                     break;
@@ -400,7 +403,8 @@ public class GridMovement : MonoBehaviour
             //Posicionar al player en la posición inicial.
             transform.position = myGrid.GetCellCenterWorld(startPlayerPos);
             coolDown = 0.0f;
-
+        CegueraDer.SetActive(false);
+        CegueraIzq.SetActive(false);
         }
 
         void Update()
