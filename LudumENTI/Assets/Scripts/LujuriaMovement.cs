@@ -138,13 +138,7 @@ public class LujuriaMovement : MonoBehaviour
                 showWarning = true;
             }
             else if(AlreadyAttack) {
-                Debug.LogWarning("Hago pupita");
-                if (playerPos == DownCell || playerPos == UpCell)
-                {
-                    //Debug.LogWarning("Player dañado");
-                    //player.GetComponent<GridMovement>().TakeDamage();
-                   
-                }
+                
                 Destroy(GO2.gameObject);
                 Destroy(GO7.gameObject);
                 GO2 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpCell), transform.rotation);

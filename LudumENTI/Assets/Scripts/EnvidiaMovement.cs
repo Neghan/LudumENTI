@@ -144,13 +144,7 @@ public class EnvidiaMovement : MonoBehaviour
             }
             else if (AlreadyAttack)
             {
-                Debug.LogWarning("Hago pupita");
-                if (playerPos == DownCell || playerPos == UpCell)
-                {
-                    //Debug.LogWarning("Player dañado");
-                    //player.GetComponent<GridMovement>().TakeDamage();
-
-                }
+                
                 Destroy(GO.gameObject);
                 Destroy(GO3.gameObject);
                 Destroy(GO6.gameObject);
