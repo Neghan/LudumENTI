@@ -34,6 +34,7 @@ public class LujuriaMovement : MonoBehaviour
     private bool AlreadyAttack = false;
     private bool showWarning = false;
     public GameObject attackEnemy;
+    public GameObject warningEnemy;
     GameObject GO, GO2, GO3, GO4, GO5, GO6, GO7, GO8;
     Vector3Int LeftCell; //Izquierda
     Vector3Int DownCell; //Abajo
@@ -79,6 +80,7 @@ public class LujuriaMovement : MonoBehaviour
         }
         else
         {
+           
             //Jugador a la izquierda
             if (currentCell.x > playerPos.x)
             {
@@ -128,22 +130,28 @@ public class LujuriaMovement : MonoBehaviour
             if (AlreadyWarning && !AlreadyAttack && !showWarning) { 
                 currentCell = myGrid.WorldToCell(transform.position);
 
-                GO2 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
-                GO7 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
+                GO2 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+                GO7 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
                 showWarning = true;
             }
             else if(AlreadyAttack) {
+                Debug.LogWarning("Hago pupita");
                 if (playerPos == DownCell || playerPos == UpCell)
                 {
+                    Debug.LogWarning("Player dañado");
                     player.GetComponent<GridMovement>().TakeDamage();
                    
                 }
                 Destroy(GO2.gameObject);
                 Destroy(GO7.gameObject);
+                GO2 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpCell), transform.rotation);
+                GO7 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownCell), transform.rotation);
                 Attacking = false;
                 AlreadyWarning = false;
                 AlreadyAttack = false;
                 showWarning = false;
+                Destroy(GO2.gameObject,movementCoolDown);
+                Destroy(GO7.gameObject, movementCoolDown);
             }
             
         }
