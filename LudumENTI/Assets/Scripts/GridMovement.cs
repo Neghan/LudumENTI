@@ -220,8 +220,7 @@ public class GridMovement : MonoBehaviour
 
     public void TakeDamage()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
+        
             life--;
 
             if (life <= 0)
@@ -229,7 +228,7 @@ public class GridMovement : MonoBehaviour
                 Destroy(this.gameObject);
                 SceneManager.LoadScene(0);
             }
-        }
+        
     }
 
     private void Move()
@@ -417,7 +416,7 @@ public class GridMovement : MonoBehaviour
                 sacrificioPiernaDerecha = sacrificioPiernaIzquierda = false;
             }
             Attack();
-            TakeDamage();
+            //TakeDamage();
             Move();
         }
     

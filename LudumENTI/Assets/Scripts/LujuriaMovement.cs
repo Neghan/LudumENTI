@@ -14,8 +14,6 @@ public class LujuriaMovement : MonoBehaviour
     public Grid myGrid;
 
 
-    private int life = 5;
-
     //Variables Publicas
     public Vector3Int startLujuriaPos;
     public float movementCoolDown = 2.0f;
@@ -78,6 +76,11 @@ public class LujuriaMovement : MonoBehaviour
             }
             return new Vector3Int(0, 0, 0);
         }
+        else if (AlreadyWarning)
+        {
+            AlreadyAttack = true;
+            return new Vector3Int(0, 0, 0);
+        }
         else
         {
            
@@ -138,8 +141,8 @@ public class LujuriaMovement : MonoBehaviour
                 Debug.LogWarning("Hago pupita");
                 if (playerPos == DownCell || playerPos == UpCell)
                 {
-                    Debug.LogWarning("Player dañado");
-                    player.GetComponent<GridMovement>().TakeDamage();
+                    //Debug.LogWarning("Player dañado");
+                    //player.GetComponent<GridMovement>().TakeDamage();
                    
                 }
                 Destroy(GO2.gameObject);
@@ -158,14 +161,7 @@ public class LujuriaMovement : MonoBehaviour
 
     }
 
-    public void TakeDamage()
-    {
-        life--;
-        if (life <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-    }
+    
     private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
     {
         //Limits of the movement.
