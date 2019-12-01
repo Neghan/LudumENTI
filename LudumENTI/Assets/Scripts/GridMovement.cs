@@ -32,12 +32,12 @@ public class GridMovement : MonoBehaviour
     public bool sacrificioPiernaIzquierda = false;
     public bool sacrificioPiernaDerecha = false;
     GameObject GO, GO2, GO3, GO4, GO5;
-    
+
     /////////////ARREGLAR/////////////
     private bool checkCollisionTileTypeWalkable()
     {
-       /* Vector3Int finalPos = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z);
-        if (myGrid.WorldToCell(finalPos) == myGrid.gameObject.transform.GetChild(1).tag == "NOWalk")*/
+        /* Vector3Int finalPos = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z);
+         if (myGrid.WorldToCell(finalPos) == myGrid.gameObject.transform.GetChild(1).tag == "NOWalk")*/
         return true;
     }
 
@@ -68,7 +68,7 @@ public class GridMovement : MonoBehaviour
     private void Attack()
     {
         currentCell = myGrid.WorldToCell(transform.position);
-   
+
 
         Debug.Log(currentCell);
         Vector3Int LeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
@@ -86,9 +86,9 @@ public class GridMovement : MonoBehaviour
             switch (direction)
             {
                 case 1: //Atacar a la izquierda
-                    //Sin brazos
-                     
-                     GO = Instantiate(attackPlayer,myGrid.GetCellCenterWorld(LeftCell), transform.rotation);
+                        //Sin brazos
+
+                    GO = Instantiate(attackPlayer, myGrid.GetCellCenterWorld(LeftCell), transform.rotation);
                     //Sin brazo izquierdo
                     if (!sacrificioBrazoDerecho)
                     {
@@ -103,7 +103,7 @@ public class GridMovement : MonoBehaviour
                     }
 
                     //CheckDamage()                    
-                    Destroy(GO.gameObject,0.5f);
+                    Destroy(GO.gameObject, 0.5f);
                     if (!sacrificioBrazoDerecho)
                     {
                         Destroy(GO2.gameObject, 0.5f);
@@ -223,7 +223,7 @@ public class GridMovement : MonoBehaviour
         {
             life--;
 
-            if(life <=0)
+            if (life <= 0)
             {
                 Destroy(this.gameObject);
                 SceneManager.LoadScene(0);
@@ -236,29 +236,30 @@ public class GridMovement : MonoBehaviour
         //left
         if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable())
         {
-        //left
-        if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable() && !sacrificioPiernaIzquierda)
+            //left
+            if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable() && !sacrificioPiernaIzquierda)
+            {
+                //Move the player to the left cell position;
+                currentCell = myGrid.WorldToCell(transform.position);
+
+                transform.Rotate(Vector3.forward * 90);
+                direction++;
+                if (direction > 3)
+                {
+                    direction = 0;
+                }
+
+                seeDirectionMoving(direction);
+
+                coolDown = movementCoolDown;
+            }
+        }
+        //right
+        else if (Input.GetKeyDown(KeyCode.D) && canMove && !sacrificioPiernaDerecha)
         {
-            //Move the player to the left cell position;
+            //Move the player to the right cell position;
             currentCell = myGrid.WorldToCell(transform.position);
 
-            transform.Rotate(Vector3.forward * 90);
-            direction++;
-            if(direction >3)
-            {
-                direction = 0;
-            }
-
-            seeDirectionMoving(direction);
-
-            coolDown = movementCoolDown;
-            }
-            //right
-            else if (Input.GetKeyDown(KeyCode.D) && canMove && !sacrificioPiernaDerecha)
-            {
-                //Move the player to the right cell position;
-                currentCell = myGrid.WorldToCell(transform.position);
-            
             transform.Rotate(Vector3.forward * -90);
             direction--;
             if (direction < 0)
@@ -268,21 +269,21 @@ public class GridMovement : MonoBehaviour
             seeDirectionMoving(direction);
 
             coolDown = movementCoolDown;
-            }
-            //up
-            else if (Input.GetKeyDown(KeyCode.W) && canMove)
-            {
-                //Move the player to the up cell position;
-                currentCell = myGrid.WorldToCell(transform.position);
-                
-                seeDirectionMoving(direction);
-                coolDown = movementCoolDown;
-            }
-            //down
-            else if (Input.GetKeyDown(KeyCode.S) && canMove)
-            {
-                //Move the player to the down cell position;
-                currentCell = myGrid.WorldToCell(transform.position);
+        }
+        //up
+        else if (Input.GetKeyDown(KeyCode.W) && canMove)
+        {
+            //Move the player to the up cell position;
+            currentCell = myGrid.WorldToCell(transform.position);
+
+            seeDirectionMoving(direction);
+            coolDown = movementCoolDown;
+        }
+        //down
+        else if (Input.GetKeyDown(KeyCode.S) && canMove)
+        {
+            //Move the player to the down cell position;
+            currentCell = myGrid.WorldToCell(transform.position);
             int nuevadireccion = 0;
             switch (direction)
             {
@@ -300,119 +301,120 @@ public class GridMovement : MonoBehaviour
                     break;
 
             }
-                seeDirectionMoving(nuevadireccion);
-                coolDown = movementCoolDown;
+            seeDirectionMoving(nuevadireccion);
+            coolDown = movementCoolDown;
         }
-
-        SimulateMovement(currentCell, goToCell);
+       
+            SimulateMovement(currentCell, goToCell);
     }
 
 
-    private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
-    {
-        //Limits of the movement.
-        if (myGrid.GetCellCenterWorld(goToCell).x >= -rows && myGrid.GetCellCenterWorld(goToCell).x <= rows &&
-            myGrid.GetCellCenterWorld(goToCell).y >= 0 && myGrid.GetCellCenterWorld(goToCell).y <= columns)
+        private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
         {
-            //Move the player smoothly to the cell position. ///Check cooldown and valid position.
-            if (currentCell != new Vector3Int(-1, -1, -1) && goToCell != new Vector3Int(-1, -1, -1))
+            //Limits of the movement.
+            if (myGrid.GetCellCenterWorld(goToCell).x >= -rows && myGrid.GetCellCenterWorld(goToCell).x <= rows &&
+                myGrid.GetCellCenterWorld(goToCell).y >= 0 && myGrid.GetCellCenterWorld(goToCell).y <= columns)
             {
-                //Cooldown Move
+                //Move the player smoothly to the cell position. ///Check cooldown and valid position.
+                if (currentCell != new Vector3Int(-1, -1, -1) && goToCell != new Vector3Int(-1, -1, -1))
+                {
+                    //Cooldown Move
+                    coolDown -= Time.deltaTime;
+
+                    //Interpolate the movement
+                    transform.position = Vector3.MoveTowards(transform.position, myGrid.GetCellCenterWorld(goToCell), movementSpeed * Time.deltaTime);
+                }
+
+            }
+
+        }
+
+
+        void coolDownHandler()
+        {
+
+            if (coolDown > 0.0f)
+            {
+                canMove = false;
                 coolDown -= Time.deltaTime;
-
-                //Interpolate the movement
-                transform.position = Vector3.MoveTowards(transform.position, myGrid.GetCellCenterWorld(goToCell), movementSpeed * Time.deltaTime);
             }
-
-        }
-
-    }
-
-
-    void coolDownHandler()
-    {
-
-        if (coolDown > 0.0f)
-        {
-            canMove = false;
-            coolDown -= Time.deltaTime;
-        }
-        if (coolDown < 0.0f)
-        {
-            coolDown = 0.0f;
-        }
-
-        if (coolDown == 0.0f)
-        {
-            canMove = true;
-        }
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            life--;
-
-            if (life <= 0)
+            if (coolDown < 0.0f)
             {
-                Destroy(this.gameObject);
-                SceneManager.LoadScene(0);
+                coolDown = 0.0f;
+            }
+
+            if (coolDown == 0.0f)
+            {
+                canMove = true;
+            }
+
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                life--;
+
+                if (life <= 0)
+                {
+                    Destroy(this.gameObject);
+                    SceneManager.LoadScene(0);
+                }
             }
         }
-    }
 
-    public void sacrificeDone(int part)
-    {
-        switch(part)
+        public void sacrificeDone(int part)
         {
-            case 0:
-                //Pierna Izquierda
-                sacrificioPiernaIzquierda = true;
-                break;
-            case 1:
-                //Pierna Derecha
-                sacrificioPiernaDerecha = true;
-                break;
-            case 2:
-                //Brazo Izquierdo
-                sacrificioBrazoIzquierdo = true;
-                break;
-            case 3:
-                //Brazo Derecho
-                sacrificioBrazoDerecho = true;
-                break;
-            case 4:
-                //Ojo Izquierdo
-                break; 
-            case 5:
-               //Ojo Derecho
-                break;
-            default:
-                break;
+            switch (part)
+            {
+                case 0:
+                    //Pierna Izquierda
+                    sacrificioPiernaIzquierda = true;
+                    break;
+                case 1:
+                    //Pierna Derecha
+                    sacrificioPiernaDerecha = true;
+                    break;
+                case 2:
+                    //Brazo Izquierdo
+                    sacrificioBrazoIzquierdo = true;
+                    break;
+                case 3:
+                    //Brazo Derecho
+                    sacrificioBrazoDerecho = true;
+                    break;
+                case 4:
+                    //Ojo Izquierdo
+                    break;
+                case 5:
+                    //Ojo Derecho
+                    break;
+                default:
+                    break;
+            }
         }
-    }
 
-    void Start()
-    {
-        //Posicionar al player en la posición inicial.
-        transform.position = myGrid.GetCellCenterWorld(startPlayerPos);
-        coolDown = 0.0f;
-         
-    }
-
-    void Update()
-    {
-        //Checks if you are able to move.
-        coolDownHandler();
-
-        if(sacrificioPiernaIzquierda && sacrificioPiernaDerecha)
+        void Start()
         {
-            sacrificioPiernaDerecha = sacrificioPiernaIzquierda = false;
+            //Posicionar al player en la posición inicial.
+            transform.position = myGrid.GetCellCenterWorld(startPlayerPos);
+            coolDown = 0.0f;
+
         }
-        Attack();
-        TakeDamage();
-        Move();
-    }
+
+        void Update()
+        {
+            //Checks if you are able to move.
+            coolDownHandler();
+
+            if (sacrificioPiernaIzquierda && sacrificioPiernaDerecha)
+            {
+                sacrificioPiernaDerecha = sacrificioPiernaIzquierda = false;
+            }
+            Attack();
+            TakeDamage();
+            Move();
+        }
+    
 }
