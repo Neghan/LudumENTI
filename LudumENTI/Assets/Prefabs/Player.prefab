@@ -97,10 +97,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 8
   columns: 7
+  attackPlayer: {fileID: 0}
+  CegueraDer: {fileID: 0}
+  CegueraIzq: {fileID: 0}
   myGrid: {fileID: 0}
   startPlayerPos: {x: 0, y: -4, z: 0}
+  canMove: 0
   movementCoolDown: 3
   movementSpeed: 5
+  sacrificioBrazoDerecho: 0
+  sacrificioBrazoIzquierdo: 0
+  sacrificioPiernaIzquierda: 0
+  sacrificioPiernaDerecha: 0
 --- !u!50 &3428134989228746693
 Rigidbody2D:
   serializedVersion: 4
