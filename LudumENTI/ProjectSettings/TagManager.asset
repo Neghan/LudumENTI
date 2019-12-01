@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - NOWalk
+  - Enemy
   layers:
   - Default
   - TransparentFX

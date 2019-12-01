@@ -217,7 +217,7 @@ public class GridMovement : MonoBehaviour
 
     }
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
