@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GridMovement : MonoBehaviour
 {
-    [Range (0, 8)]
+    [Range(0, 8)]
     public int rows;
 
     [Range(0, 7)]
@@ -18,10 +18,10 @@ public class GridMovement : MonoBehaviour
     public Vector3Int startPlayerPos;
 
     private float coolDown = 2.0f;
-    private bool canMove;
     private int direction = 0;
+    public bool canMove;
     public float movementCoolDown = 2.0f;
-    public  float movementSpeed = 1.0f;
+    public float movementSpeed = 1.0f;
 
     private Vector3Int currentCell = new Vector3Int(-1, -1, -1);
     private Vector3Int goToCell = new Vector3Int(-1, -1, -1);
@@ -232,6 +232,9 @@ public class GridMovement : MonoBehaviour
     }
 
     private void Move()
+    {
+        //left
+        if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable())
         {
         //left
         if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable() && !sacrificioPiernaIzquierda)
@@ -301,11 +304,11 @@ public class GridMovement : MonoBehaviour
                 coolDown = movementCoolDown;
         }
 
-        SimulateMovement(currentCell,goToCell);
+        SimulateMovement(currentCell, goToCell);
     }
 
 
-    private void SimulateMovement( Vector3Int currentCell,Vector3Int goToCell)
+    private void SimulateMovement(Vector3Int currentCell, Vector3Int goToCell)
     {
         //Limits of the movement.
         if (myGrid.GetCellCenterWorld(goToCell).x >= -rows && myGrid.GetCellCenterWorld(goToCell).x <= rows &&
@@ -320,7 +323,7 @@ public class GridMovement : MonoBehaviour
                 //Interpolate the movement
                 transform.position = Vector3.MoveTowards(transform.position, myGrid.GetCellCenterWorld(goToCell), movementSpeed * Time.deltaTime);
             }
-                
+
         }
 
     }
