@@ -27,12 +27,17 @@ public class GridMovement : MonoBehaviour
     private Vector3Int currentCell = new Vector3Int(-1, -1, -1);
     private Vector3Int goToCell = new Vector3Int(-1, -1, -1);
 
-    private int life = 5;
+    private int life = 3;
     public bool sacrificioBrazoDerecho = false;
     public bool sacrificioBrazoIzquierdo = false;
     public bool sacrificioPiernaIzquierda = false;
     public bool sacrificioPiernaDerecha = false;
     GameObject GO, GO2, GO3, GO4, GO5;
+
+    public int GetLife()
+    {
+        return life; 
+    }
 
     /////////////ARREGLAR/////////////
     private bool checkCollisionTileTypeWalkable()
