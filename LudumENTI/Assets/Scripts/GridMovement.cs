@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GridMovement : MonoBehaviour
 {
+    public GameObject particlesDamage;
     [Range(0, 8)]
     public int rows;
 
@@ -34,10 +35,14 @@ public class GridMovement : MonoBehaviour
     public bool sacrificioPiernaDerecha = false;
     GameObject GO, GO2, GO3, GO4, GO5;
 
+    private SpriteRenderer mySprite;
+
+
     public int GetLife()
     {
         return life; 
     }
+
 
     /////////////ARREGLAR/////////////
     private bool checkCollisionTileTypeWalkable()
@@ -230,11 +235,22 @@ public class GridMovement : MonoBehaviour
 
     }
 
+    IEnumerator parpadeoDamage()
+    {
+        mySprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        mySprite.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        mySprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        mySprite.color = Color.white;
+    }
     public void TakeDamage()
     {
         
             life--;
-
+            Instantiate(particlesDamage, transform.position, Quaternion.identity);
+            StartCoroutine(parpadeoDamage());
             if (life <= 0)
             {
                 Destroy(this.gameObject);
@@ -411,6 +427,7 @@ public class GridMovement : MonoBehaviour
 
         void Start()
         {
+        mySprite = GetComponentInChildren<SpriteRenderer>();
             //Posicionar al player en la posición inicial.
             transform.position = myGrid.GetCellCenterWorld(startPlayerPos);
             coolDown = 0.0f;

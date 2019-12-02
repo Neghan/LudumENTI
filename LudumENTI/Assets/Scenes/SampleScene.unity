@@ -624,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 6449082701547442066, guid: bd4d7f60c306df1459d563b665a614c6,
         type: 3}
       propertyPath: whichCorruptionLevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1384432087654853185, guid: bd4d7f60c306df1459d563b665a614c6,
         type: 3}
@@ -650,6 +650,12 @@ PrefabInstance:
       propertyPath: myGrid
       value: 
       objectReference: {fileID: 280840607}
+    - target: {fileID: 3428134989228746689, guid: 841dff7313bbb9145989d163409a67ca,
+        type: 3}
+      propertyPath: particlesDamage
+      value: 
+      objectReference: {fileID: 1328389657659120542, guid: 9318d79a546e74e4981f89e153e8329b,
+        type: 3}
     - target: {fileID: 3428134989228746691, guid: 841dff7313bbb9145989d163409a67ca,
         type: 3}
       propertyPath: m_LocalPosition.x

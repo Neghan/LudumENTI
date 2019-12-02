@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class RoomController : MonoBehaviour
 {
     public int whichCorruptionLevel = 0;
-    private Tilemap mySelfGroundTilemap;
+    private Tilemap[] mySelfGroundTilemaps;
 
     public GameObject DoorsHolder;
     public GameObject BordersHolder;
@@ -43,9 +43,10 @@ public class RoomController : MonoBehaviour
             cloud.color = ColorCorruptions[whichCorruptionLevel];
         }
 
-        
+
         //Cambio color en Tiles
-        mySelfGroundTilemap.color = ColorCorruptions[whichCorruptionLevel]; 
+        mySelfGroundTilemaps[0].color = ColorCorruptions[whichCorruptionLevel]; 
+        mySelfGroundTilemaps[1].color = ColorCorruptions[whichCorruptionLevel]; 
     }
 
     /// LLAMAR A ESTA FUNCION PARA SUBIR LA CORRUPCION DE LA SALA
@@ -81,7 +82,7 @@ public class RoomController : MonoBehaviour
 
     void Start()
     {
-        mySelfGroundTilemap = GetComponentInChildren<Tilemap>();
+        mySelfGroundTilemaps = GetComponentsInChildren<Tilemap>();
         ConvertToCorruption(whichCorruptionLevel);
     }
 

@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 18.7, y: 500, z: 1}
   m_Children: []
   m_Father: {fileID: 3428134989228746691}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &614123982
 SpriteRenderer:
@@ -109,7 +109,7 @@ Transform:
   m_LocalScale: {x: 18.7, y: 500, z: 1}
   m_Children: []
   m_Father: {fileID: 3428134989228746691}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &674086344
 SpriteRenderer:
@@ -189,7 +189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3428134989228746691}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4501509354653022007
 SpriteRenderer:
@@ -456,9 +456,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
+  - {fileID: 1867749278567288629}
   - {fileID: 614123981}
   - {fileID: 674086345}
-  - {fileID: 1867749278567288629}
   - {fileID: 3363755018049172470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cff831573d66c47aa22af0352ed4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlesDamage: {fileID: 0}
   rows: 8
   columns: 7
   attackPlayer: {fileID: 7782427043257765064, guid: cc9cd36fa21e3654a8a9bd51b0b10ba1,
