@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7941828061927060280}
   - component: {fileID: 1736902797280710605}
   - component: {fileID: -4520136156919694168}
+  - component: {fileID: 4845724590190785270}
   m_Layer: 0
   m_Name: AttackPS
   m_TagString: Untagged
@@ -4822,5 +4823,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 142fb01baf5faec499de6486ad9e2770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4845724590190785270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328389657659120542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a830064a723206429b5a799d14444b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
