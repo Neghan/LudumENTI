@@ -20,10 +20,11 @@ public class SetUpSacrifices : MonoBehaviour
                 currentRandom = Random.Range(0, childrenSac.SacImages.Count);
             }
             while (currentRandom == lastRandom);
-
             childrenSac.idType = currentRandom;
 
             lastRandom = currentRandom;
+            //Crea el Tipo de Sacrificio Aleatorio
+            childrenSac.SpawnRandomSac();
         }
     }
     // Start is called before the first frame update

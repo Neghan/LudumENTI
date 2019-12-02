@@ -326,17 +326,21 @@ public class IraMovement : MonoBehaviour
     void Update()
     {
 
-
-        if (!player.GetComponent<GridMovement>().canMove && canMove)
+        if (player != null)
         {
+            if (!player.GetComponent<GridMovement>().canMove && canMove)
+            {
 
-            goToCell = currentCell + WhereIsPlayer();
-            coolDown = movementCoolDown;
+                goToCell = currentCell + WhereIsPlayer();
+                coolDown = movementCoolDown;
 
+            }
+            coolDownHandler();
+            Attack();
+            Move();
         }
+        
 
-        coolDownHandler();
-        Attack();
-        Move();
+        
     }
 }
