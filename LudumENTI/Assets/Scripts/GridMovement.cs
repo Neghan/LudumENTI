@@ -71,6 +71,12 @@ public class GridMovement : MonoBehaviour
         }
     }
 
+    public int getDirection()
+    {
+        return direction;
+    }
+
+
     private void Attack()
     {
         currentCell = myGrid.WorldToCell(transform.position);
@@ -408,8 +414,8 @@ public class GridMovement : MonoBehaviour
             //Posicionar al player en la posición inicial.
             transform.position = myGrid.GetCellCenterWorld(startPlayerPos);
             coolDown = 0.0f;
-        CegueraDer.SetActive(false);
-        CegueraIzq.SetActive(false);
+            CegueraDer.SetActive(false);
+            CegueraIzq.SetActive(false);
         }
 
         void Update()
