@@ -115,6 +115,7 @@ public class GridMovement : MonoBehaviour
                         Destroy(GO4.gameObject, 0.5f);
                         Destroy(GO5.gameObject, 0.5f);
                     }
+                    coolDown = movementCoolDown;
                     break;
 
 
@@ -146,7 +147,7 @@ public class GridMovement : MonoBehaviour
                         Destroy(GO4.gameObject, 0.5f);
                         Destroy(GO5.gameObject, 0.5f);
                     }
-
+                    coolDown = movementCoolDown;
                     break;
 
                 case 3: //Atacar a la derecha
@@ -178,7 +179,7 @@ public class GridMovement : MonoBehaviour
                         Destroy(GO4.gameObject, 0.5f);
                         Destroy(GO5.gameObject, 0.5f);
                     }
-
+                    coolDown = movementCoolDown;
                     break;
 
                 case 0: //Atacar hacia arriba
@@ -210,7 +211,7 @@ public class GridMovement : MonoBehaviour
                         Destroy(GO4.gameObject, 0.5f);
                         Destroy(GO5.gameObject, 0.5f);
                     }
-
+                    coolDown = movementCoolDown;
                     break;
 
             }
