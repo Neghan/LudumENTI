@@ -37,11 +37,16 @@ public class GridMovement : MonoBehaviour
 
     private SpriteRenderer mySprite;
 
+    public GameObject Player;
+    public List<Sprite> PlayerSprites;
 
+    public GameObject PauseMenu_GO;
+    public GameObject Gameover_GO;
     public int GetLife()
     {
         return life; 
     }
+
 
 
     /////////////ARREGLAR/////////////
@@ -58,17 +63,22 @@ public class GridMovement : MonoBehaviour
         {
             case 1:
                 goToCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
+                Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
                 break;
 
             case 2:
                 goToCell = new Vector3Int(currentCell.x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo
+                Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[0];
                 break;
             case 3:
                 goToCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derecha
+                Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[3];
+                
                 break;
 
             case 0:
                 goToCell = new Vector3Int(currentCell.x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba
+                Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[1];
                 break;
 
             default:
@@ -254,7 +264,7 @@ public class GridMovement : MonoBehaviour
             if (life <= 0)
             {
                 Destroy(this.gameObject);
-                SceneManager.LoadScene(0);
+                Gameover_GO.SetActive(true);
             }
         
     }
@@ -269,8 +279,7 @@ public class GridMovement : MonoBehaviour
             {
                 //Move the player to the left cell position;
                 currentCell = myGrid.WorldToCell(transform.position);
-
-                transform.Rotate(Vector3.forward * 90);
+                 
                 direction++;
                 if (direction > 3)
                 {
@@ -287,8 +296,7 @@ public class GridMovement : MonoBehaviour
         {
             //Move the player to the right cell position;
             currentCell = myGrid.WorldToCell(transform.position);
-
-            transform.Rotate(Vector3.forward * -90);
+             
             direction--;
             if (direction < 0)
             {
@@ -386,8 +394,7 @@ public class GridMovement : MonoBehaviour
 
                 if (life <= 0)
                 {
-                    Destroy(this.gameObject);
-                    SceneManager.LoadScene(0);
+                   Gameover_GO.SetActive(true); 
                 }
             }
         }
@@ -425,6 +432,14 @@ public class GridMovement : MonoBehaviour
             }
         }
 
+        void PauseMenu()
+        {
+        if (Input.GetKeyDown(KeyCode.P))
+            {
+            PauseMenu_GO.SetActive(true);
+            Time.timeScale = 0;
+            }
+        }
         void Start()
         {
         mySprite = GetComponentInChildren<SpriteRenderer>();
@@ -433,6 +448,7 @@ public class GridMovement : MonoBehaviour
             coolDown = 0.0f;
             CegueraDer.SetActive(false);
             CegueraIzq.SetActive(false);
+            Gameover_GO.SetActive(false);
         }
 
         void Update()
@@ -445,7 +461,8 @@ public class GridMovement : MonoBehaviour
                 sacrificioPiernaDerecha = sacrificioPiernaIzquierda = false;
             }
             Attack();
-            //TakeDamage();
+        //TakeDamage();
+            PauseMenu();
             Move();
         }
     
