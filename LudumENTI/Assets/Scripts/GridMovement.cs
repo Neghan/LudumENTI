@@ -19,6 +19,7 @@ public class GridMovement : MonoBehaviour
     public Grid myGrid;
     public Vector3Int startPlayerPos;
 
+    private bool paused;
     private float coolDown = 2.0f;
     private int direction = 0;
     public bool canMove;
@@ -457,8 +458,17 @@ public class GridMovement : MonoBehaviour
         {
         if (Input.GetKeyDown(KeyCode.P))
             {
-            PauseMenu_GO.SetActive(true);
-            Time.timeScale = 0;
+            paused = !paused;
+            PauseMenu_GO.SetActive(paused);
+            if (paused)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+            
             }
         }
 
