@@ -17,13 +17,16 @@ public class DoDamageToPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
 
-        if(player.transform.position == transform.position && !Damage)
+        if (player.gameObject != null)
         {
-            Debug.LogWarning("Player dañado");
-            player.GetComponent<GridMovement>().TakeDamage();
-            Damage = true;
+            if (player.transform.position == transform.position && !Damage)
+            {
+                Debug.LogWarning("Player dañado");
+                player.GetComponent<GridMovement>().TakeDamage();
+                Damage = true;
+            }
         }
+        
     }
 }

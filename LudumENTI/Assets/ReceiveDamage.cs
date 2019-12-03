@@ -10,6 +10,12 @@ public class ReceiveDamage : MonoBehaviour
     {
         
     }
+
+    public int GetLife()
+    {
+        return life;
+    }
+
     public void TakeDamage()
     {
         life--;

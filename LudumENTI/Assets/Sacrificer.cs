@@ -10,20 +10,23 @@ public class Sacrificer : MonoBehaviour
     {
         //ListSacrifices[0].idType;
         player.sacrificeDone(ListSacrifices[0].idType);
-        GetComponent<Canvas>().enabled = false;
+        player.EnableInput();
+        gameObject.SetActive(false);
     }
     public void Sacrifice2()
     {
         //ListSacrifices[1].idType;
         player.sacrificeDone(ListSacrifices[1].idType);
-        GetComponent<Canvas>().enabled = false;
+        player.EnableInput();
+        gameObject.SetActive(false);
     }
     public void Sacrifice3()
     {
         //ListSacrifices[2].idType;
         
         player.sacrificeDone(ListSacrifices[2].idType);
-        GetComponent<Canvas>().enabled = false;
+        player.EnableInput();
+        gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()

@@ -52,7 +52,7 @@ public class RoomController : MonoBehaviour
     /// LLAMAR A ESTA FUNCION PARA SUBIR LA CORRUPCION DE LA SALA
     public void IncrementCorruption()
     {
-        whichCorruptionLevel += 1;
+        whichCorruptionLevel =(whichCorruptionLevel + 1)%6;
         ConvertToCorruption(whichCorruptionLevel);
     }
 

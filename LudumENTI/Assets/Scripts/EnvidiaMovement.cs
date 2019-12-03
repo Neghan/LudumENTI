@@ -212,6 +212,7 @@ public class EnvidiaMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        myGrid = GameObject.Find("Room").GetComponent<Grid>();
         coolDown = 0.0f;
     }
 

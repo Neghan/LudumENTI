@@ -22,6 +22,7 @@ public class GridMovement : MonoBehaviour
     private float coolDown = 2.0f;
     private int direction = 0;
     public bool canMove;
+    private bool enabledInput;
     public float movementCoolDown = 2.0f;
     public float movementSpeed = 1.0f;
 
@@ -42,12 +43,32 @@ public class GridMovement : MonoBehaviour
 
     public GameObject PauseMenu_GO;
     public GameObject Gameover_GO;
+
     public int GetLife()
     {
         return life; 
     }
+    public void StopInput()
+    {
+        enabledInput = false;
+    }
+    public void EnableInput()
+    {
+        enabledInput = true;
+    }
+    public void ResetLife()
+    {
+        life = 3;
+    }
 
 
+    public void SetLocation(Vector3Int Location)
+    {
+
+        currentCell= goToCell = Location;
+        Debug.Log("currentCell: "+currentCell);
+        Debug.Log("goToCell: "+goToCell);
+    }
 
     /////////////ARREGLAR/////////////
     private bool checkCollisionTileTypeWalkable()
@@ -254,6 +275,7 @@ public class GridMovement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         mySprite.color = Color.white;
     }
+
     public void TakeDamage()
     {
         
@@ -439,6 +461,7 @@ public class GridMovement : MonoBehaviour
             Time.timeScale = 0;
             }
         }
+
         void Start()
         {
         mySprite = GetComponentInChildren<SpriteRenderer>();
@@ -452,8 +475,12 @@ public class GridMovement : MonoBehaviour
 
         void Update()
         {
-            //Checks if you are able to move.
+        //Checks if you are able to move.
+        if (enabledInput)
+        {
             coolDownHandler();
+        }
+            
 
             if (sacrificioPiernaIzquierda && sacrificioPiernaDerecha)
             {
