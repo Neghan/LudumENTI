@@ -57,6 +57,7 @@ public class GulaMovement : MonoBehaviour
     private bool walk = false;
     private bool Cry = false;
     private bool firstStep = false;
+    private bool oneDeath;
 
     private Vector3Int WhereIsPlayer()
     {
@@ -121,6 +122,7 @@ public class GulaMovement : MonoBehaviour
             return new Vector3Int(0, 0, 0);
         }
     }
+
     private void Move()
     {
         if (!Attacking)
@@ -283,6 +285,7 @@ public class GulaMovement : MonoBehaviour
         }
 
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -300,14 +303,16 @@ public class GulaMovement : MonoBehaviour
             m_audioSource.PlayOneShot(akSounds[1]);///Grito
             Cry = true;
         }
-        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
+        ///ARREGLAR PARA QUE NO SE VEAN LOS ICONOS AMARILLOS DEL SUELO
+        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0&& !oneDeath)
         {
             Attacking = false;
             m_audioSource.PlayOneShot(akSounds[2]);///Death       
             Destroy(GO.gameObject);
             Destroy(GO2.gameObject);
             Destroy(GO3.gameObject);
-            Destroy(this.gameObject,4.0f);
+            Destroy(this.gameObject,3.0f);
+            oneDeath = true;
         }
         if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
         {
