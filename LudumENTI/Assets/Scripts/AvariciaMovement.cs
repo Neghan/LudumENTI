@@ -42,13 +42,13 @@ public class AvariciaMovement : MonoBehaviour
     Vector3Int UpUpRightCell; /// Arribax2-Derecha
     Vector3Int UpRightCell; /// Arriba-Derecha
     Vector3Int UpRightCell2; /// Arriba-Derechax2
-    Vector3Int RightCell2; // Derechax2
-    Vector3Int DownRightCell2; //Abajo-Derechax2
-    Vector3Int DownRightCell; //Abajo-Derecha
-    Vector3Int DownDownRightCell; //Abajox2-Derecha
-    Vector3Int DownCell2; //Abajox2
-    Vector3Int DownDownLeftCell; //Abajox2-Izquierda
-    Vector3Int DownLeftCell; //Abajo-Izquierda
+    Vector3Int RightCell2; /// Derechax2
+    Vector3Int DownRightCell2; ///Abajo-Derechax2
+    Vector3Int DownRightCell; ///Abajo-Derecha
+    Vector3Int DownDownRightCell; ///Abajox2-Derecha
+    Vector3Int DownCell2; ///Abajox2
+    Vector3Int DownDownLeftCell; ///Abajox2-Izquierda
+    Vector3Int DownLeftCell; ///Abajo-Izquierda
     Vector3Int DownLeftCell2; //Abajo-Izquierdax2
 
     
@@ -82,26 +82,20 @@ public class AvariciaMovement : MonoBehaviour
         UpUpRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arribax2-Derecha
         UpRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Derecha
         UpRightCell2 = new Vector3Int(currentCell.x + 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Derechax2
-
-
-
-        DownCell2 = new Vector3Int(currentCell.x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2
-        DownLeftCell2 = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierdax2
-        DownDownLeftCell = new Vector3Int(currentCell.x - 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2-Izquierda
-        DownRightCell2 = new Vector3Int(currentCell.x + 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derechax2
-        DownDownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2-Derecha
         RightCell2 = new Vector3Int(currentCell.x + 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derechax2
-        RightDownCell2 = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Derecha-Abajo 
-       
-        
-        
-        
-        
+        DownRightCell2 = new Vector3Int(currentCell.x + 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derechax2
+        DownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derecha
+        DownDownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2-Derecha
+        DownCell2 = new Vector3Int(currentCell.x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2
+        DownDownLeftCell = new Vector3Int(currentCell.x - 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2-Izquierda
+        DownLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierda
+        DownLeftCell2 = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierdax2
+
 
         LeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
         DownCell = new Vector3Int(currentCell.x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo
-        DownLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierda
-        DownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derecha
+        
+        
         RightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derecha
         RightDownCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Derecha-Abajo 
         UpCell = new Vector3Int(currentCell.x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba
@@ -179,18 +173,22 @@ public class AvariciaMovement : MonoBehaviour
             if (AlreadyWarning && !AlreadyAttack && !showWarning)
             {
                 currentCell = myGrid.WorldToCell(transform.position);
-                GO = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpUpLeftCell), transform.rotation);
-                GO2 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpCell2), transform.rotation);
-                GO3 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpUpRightCell), transform.rotation);
-                GO4 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpRightCell2), transform.rotation);
-                GO5 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(RightCell2), transform.rotation);
-                GO6 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownRightCell2), transform.rotation);
-                GO7 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownDownRightCell), transform.rotation);
-                GO8 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownCell2), transform.rotation);
-                GO9 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownDownLeftCell), transform.rotation);
-                GO10 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownLeftCell2), transform.rotation);
-                GO11 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(LeftCell2), transform.rotation);
-                GO12 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpLeftCell2), transform.rotation);
+                GO = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(LeftCell2), transform.rotation);
+                GO2 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpLeftCell2), transform.rotation);
+                GO3 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpLeftCell), transform.rotation);
+                GO4 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpUpLeftCell), transform.rotation);
+                GO5 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpCell2), transform.rotation);
+                GO6 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpUpRightCell), transform.rotation);
+                GO7 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpRightCell), transform.rotation);
+                GO8 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(UpRightCell2), transform.rotation);
+                GO9 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(RightCell2), transform.rotation);
+                GO10 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownRightCell2), transform.rotation);
+                GO11 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownRightCell), transform.rotation);
+                GO12 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownDownRightCell), transform.rotation);
+                GO13 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownCell2), transform.rotation);
+                GO14 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownDownLeftCell), transform.rotation);
+                GO15 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownLeftCell), transform.rotation);
+                GO16 = Instantiate(warningEnemy, myGrid.GetCellCenterWorld(DownLeftCell2), transform.rotation);
                 showWarning = true;
             }
             else if (AlreadyAttack)
@@ -208,19 +206,27 @@ public class AvariciaMovement : MonoBehaviour
                 Destroy(GO10.gameObject);
                 Destroy(GO11.gameObject);
                 Destroy(GO12.gameObject);
+                Destroy(GO13.gameObject);
+                Destroy(GO14.gameObject);
+                Destroy(GO15.gameObject);
+                Destroy(GO16.gameObject);
 
-                GO = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpUpLeftCell), transform.rotation);
-                GO2 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpCell2), transform.rotation);
-                GO3 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpUpRightCell), transform.rotation);
-                GO4 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpRightCell2), transform.rotation);
-                GO5 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(RightCell2), transform.rotation);
-                GO6 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownRightCell2), transform.rotation);
-                GO7 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownDownRightCell), transform.rotation);
-                GO8 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownCell2), transform.rotation);
-                GO9 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownDownLeftCell), transform.rotation);
-                GO10 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownLeftCell2), transform.rotation);
-                GO11 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(LeftCell2), transform.rotation);
-                GO12 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpLeftCell2), transform.rotation);
+                GO = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(LeftCell2), transform.rotation);
+                GO2 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpLeftCell2), transform.rotation);
+                GO3 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpLeftCell), transform.rotation);
+                GO4 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpUpLeftCell), transform.rotation);
+                GO5 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpCell2), transform.rotation);
+                GO6 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpUpRightCell), transform.rotation);
+                GO7 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpRightCell), transform.rotation);
+                GO8 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpRightCell2), transform.rotation);
+                GO9 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(RightCell2), transform.rotation);
+                GO10 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownRightCell2), transform.rotation);
+                GO11 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownRightCell), transform.rotation);
+                GO12 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownDownRightCell), transform.rotation);
+                GO13 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownCell2), transform.rotation);
+                GO14 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownDownLeftCell), transform.rotation);
+                GO15 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownLeftCell), transform.rotation);
+                GO16 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(DownLeftCell2), transform.rotation);
 
                 Attacking = false;
                 AlreadyWarning = false;
@@ -238,6 +244,10 @@ public class AvariciaMovement : MonoBehaviour
                 Destroy(GO10.gameObject, movementCoolDown);
                 Destroy(GO11.gameObject, movementCoolDown);
                 Destroy(GO12.gameObject, movementCoolDown);
+                Destroy(GO13.gameObject, movementCoolDown);
+                Destroy(GO14.gameObject, movementCoolDown);
+                Destroy(GO15.gameObject, movementCoolDown);
+                Destroy(GO16.gameObject, movementCoolDown);
 
             }
 
@@ -310,6 +320,10 @@ public class AvariciaMovement : MonoBehaviour
             Destroy(GO10.gameObject);
             Destroy(GO11.gameObject);
             Destroy(GO12.gameObject);
+            Destroy(GO13.gameObject);
+            Destroy(GO14.gameObject);
+            Destroy(GO15.gameObject);
+            Destroy(GO16.gameObject);
             Destroy(this.gameObject);
         }
 

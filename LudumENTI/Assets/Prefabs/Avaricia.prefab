@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 976666695861792051}
   - component: {fileID: 976666695861792048}
   - component: {fileID: 976666695861792049}
-  - component: {fileID: 1020545167176603590}
+  - component: {fileID: -2961539679002706537}
   m_Layer: 0
   m_Name: Avaricia
   m_TagString: Enemy
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be66ed453523f44481909a8f1b20478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1020545167176603590
+--- !u!114 &-2961539679002706537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 976666695861792063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43792e0b8cbdb24499360594e3219d83, type: 3}
+  m_Script: {fileID: 11500000, guid: 5938e3dac3c49dc49af4fec176b7994c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rows: 8
