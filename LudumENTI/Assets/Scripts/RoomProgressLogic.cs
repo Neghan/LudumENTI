@@ -18,19 +18,25 @@ public class RoomProgressLogic : MonoBehaviour
     public Animation textAnimationPlayer;
     private bool availableToGoDown;
 
-    private bool oneTime;
+    private bool oneTimeParticles;
+
+    public string[] enemiesNames;
 
     IEnumerator GoDownRoom()
     {
-        roomText.text = "Room 1";
+        //FADEOUT START
+        Player.transform.GetComponent<GridMovement>().StopInput();
         backgroundAnimationPlayer.Play();
         textAnimationPlayer.Play();
+        int corruptLevel = RoomCorruption.GetComponent<RoomController>().whichCorruptionLevel;
+        roomText.text = enemiesNames[corruptLevel] + " Room";
+
+        //FADEOUT FULLY TRANSPARENT
         yield return new WaitForSeconds(1.0f);
         //RESETEAR TODO
         RoomCorruption.GetComponent<RoomController>().IncrementCorruption();
-        int corruptLevel = RoomCorruption.GetComponent<RoomController>().whichCorruptionLevel;
         Player.transform.GetComponent<GridMovement>().SetLocation(new Vector3Int(0,-4,0));
-        Player.transform.GetComponent<GridMovement>().StopInput();
+        
         Player.transform.Translate(new Vector3Int(0,-4,0));
         
         //Player.transform.GetComponent<GridMovement>().ResetLife();
@@ -41,6 +47,8 @@ public class RoomProgressLogic : MonoBehaviour
         
         availableToGoDown = false;
         OpenDoor.Stop();
+        oneTimeParticles = false;
+        //FADEOUT END
         yield return new WaitForSeconds(2.0f);
         Sacrificer.SetActive(true);
     }
@@ -71,10 +79,10 @@ public class RoomProgressLogic : MonoBehaviour
         {
             availableToGoDown = true;
 
-            if (!oneTime)
+            if (!oneTimeParticles)
             {
                 OpenDoor.Play();
-                oneTime = true;
+                oneTimeParticles = true;
             }
             
         }

@@ -209,6 +209,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6075813112668108016, guid: 4dab2651060f3f04dbf28f835dbd1d8e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dab2651060f3f04dbf28f835dbd1d8e, type: 3}
 --- !u!1 &115780706 stripped
@@ -1566,33 +1571,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1399368326654629078, guid: ea6105af88b1da744ad1b24d2524780a,
+    - target: {fileID: 1399368326680506610, guid: ea6105af88b1da744ad1b24d2524780a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00012207031
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399368326680506610, guid: ea6105af88b1da744ad1b24d2524780a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 125.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399368326654629079, guid: ea6105af88b1da744ad1b24d2524780a,
-        type: 3}
-      propertyPath: m_Text
-      value: You died, do you want to try again?
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399368326654629079, guid: ea6105af88b1da744ad1b24d2524780a,
-        type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399368326654629079, guid: ea6105af88b1da744ad1b24d2524780a,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 193093680, guid: ea6105af88b1da744ad1b24d2524780a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 19.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1557818684, guid: ea6105af88b1da744ad1b24d2524780a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 17.19999
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea6105af88b1da744ad1b24d2524780a, type: 3}
@@ -1678,6 +1665,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4501509354653022007, guid: 841dff7313bbb9145989d163409a67ca,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 841dff7313bbb9145989d163409a67ca, type: 3}
 --- !u!1001 &5467036920025323402
@@ -1749,11 +1741,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
         type: 3}
-      propertyPath: ALLEnemies.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
-        type: 3}
       propertyPath: RoomCorruption
       value: 
       objectReference: {fileID: 85307824}
@@ -1767,36 +1754,6 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1949878111}
-    - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
-        type: 3}
-      propertyPath: ALLEnemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 4485691088467263139, guid: b2b43a74b4dd0774abf5177565d33015,
-        type: 3}
-    - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
-        type: 3}
-      propertyPath: ALLEnemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 8986430483668253125, guid: c5e6f510a770ae14a9dec878e31dd9d8,
-        type: 3}
-    - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
-        type: 3}
-      propertyPath: ALLEnemies.Array.data[2]
-      value: 
-      objectReference: {fileID: 4568776072886448731, guid: ffa366de17a6ca14e9bc132471cedab7,
-        type: 3}
-    - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
-        type: 3}
-      propertyPath: ALLEnemies.Array.data[3]
-      value: 
-      objectReference: {fileID: 4230337489093308644, guid: 3334f15123ec2cd41b7543460ad8f9b7,
-        type: 3}
-    - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
-        type: 3}
-      propertyPath: ALLEnemies.Array.data[4]
-      value: 
-      objectReference: {fileID: 262446017388808535, guid: c71e8f77c8bfea0438f125e8d43e79fd,
-        type: 3}
     - target: {fileID: 4460637419430808251, guid: 67db8b4b7947e934b96c0bba018773ea,
         type: 3}
       propertyPath: Sacrificer

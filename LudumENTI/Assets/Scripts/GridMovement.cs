@@ -22,7 +22,7 @@ public class GridMovement : MonoBehaviour
     private float coolDown = 2.0f;
     private int direction = 0;
     public bool canMove;
-    private bool enabledInput;
+    public bool enabledInput;
     public float movementCoolDown = 2.0f;
     public float movementSpeed = 1.0f;
 
