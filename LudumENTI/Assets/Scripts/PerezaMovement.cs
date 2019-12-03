@@ -63,7 +63,10 @@ public class PerezaMovement : MonoBehaviour
     private GameObject player;
     Vector3Int playerPos;
 
-
+    public AudioClip[] akSounds;
+    private AudioSource m_audioSource;
+    private bool walk = false;
+    private bool Cry = false;
 
     private Vector3Int WhereIsPlayer()
     {
@@ -147,6 +150,11 @@ public class PerezaMovement : MonoBehaviour
     {
         if (!Attacking)
         {
+            if (!walk && !AlreadyAttack && !AlreadyAttack && Cry)
+            {
+                m_audioSource.PlayOneShot(akSounds[Random.Range(3, 4)]);///Walk
+                walk = true;
+            }
             currentCell = myGrid.WorldToCell(transform.position);
             //left
             // Debug.Log(Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position));
@@ -207,6 +215,9 @@ public class PerezaMovement : MonoBehaviour
                 GO11 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(LeftCell2), transform.rotation);
                 GO12 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(UpLeftCell2), transform.rotation);
                
+                ///Solo para que no suene el andar cuando ataca
+                walk = true;
+                m_audioSource.PlayOneShot(akSounds[0]);///Attack
                 Attacking = false;
                 AlreadyWarning = false;
                 AlreadyAttack = false;
@@ -272,6 +283,7 @@ public class PerezaMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_audioSource = this.GetComponent<AudioSource>();
         player = GameObject.Find("Player");
         myGrid = GameObject.Find("Room").GetComponent<Grid>();
         coolDown = 0.0f;
@@ -280,9 +292,15 @@ public class PerezaMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player.GetComponent<GridMovement>().enabledInput && !Cry)
+        {
+            m_audioSource.PlayOneShot(akSounds[1]);///Grito
+            Cry = true;
+        }
         if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
         {
-
+            Attacking = false;
+            m_audioSource.PlayOneShot(akSounds[2]);///Death
             Destroy(GO.gameObject);
             Destroy(GO2.gameObject);
             Destroy(GO3.gameObject);
@@ -295,12 +313,12 @@ public class PerezaMovement : MonoBehaviour
             Destroy(GO10.gameObject);
             Destroy(GO11.gameObject);
             Destroy(GO12.gameObject);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,4.0f);
         }
 
         if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
         {
-
+            walk = false;
             goToCell = currentCell + WhereIsPlayer();
             coolDown = movementCoolDown;
 
