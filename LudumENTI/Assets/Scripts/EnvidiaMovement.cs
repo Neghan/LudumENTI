@@ -219,9 +219,17 @@ public class EnvidiaMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
+        {
 
+            Destroy(GO.gameObject);
+            Destroy(GO3.gameObject);
+            Destroy(GO6.gameObject);
+            Destroy(GO8.gameObject);
+            Destroy(this.gameObject);
+        }
 
-        if (!player.GetComponent<GridMovement>().canMove && canMove)
+        if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
         {
 
             goToCell = currentCell + WhereIsPlayer();

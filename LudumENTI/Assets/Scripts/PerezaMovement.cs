@@ -280,9 +280,25 @@ public class PerezaMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
+        {
 
+            Destroy(GO.gameObject);
+            Destroy(GO2.gameObject);
+            Destroy(GO3.gameObject);
+            Destroy(GO4.gameObject);
+            Destroy(GO5.gameObject);
+            Destroy(GO6.gameObject);
+            Destroy(GO7.gameObject);
+            Destroy(GO8.gameObject);
+            Destroy(GO9.gameObject);
+            Destroy(GO10.gameObject);
+            Destroy(GO11.gameObject);
+            Destroy(GO12.gameObject);
+            Destroy(this.gameObject);
+        }
 
-        if (!player.GetComponent<GridMovement>().canMove && canMove)
+        if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
         {
 
             goToCell = currentCell + WhereIsPlayer();
