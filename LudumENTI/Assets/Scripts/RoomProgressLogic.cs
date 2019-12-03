@@ -11,7 +11,8 @@ public class RoomProgressLogic : MonoBehaviour
     public GameObject Player;
     public GameObject Sacrificer;
 
-
+    public AudioClip[] roomSounds;
+    private AudioSource startRoom;
     private ParticleSystem OpenDoor;
     private Text roomText;
     public Animation backgroundAnimationPlayer;
@@ -24,6 +25,7 @@ public class RoomProgressLogic : MonoBehaviour
 
     IEnumerator GoDownRoom()
     {
+        startRoom.PlayOneShot(roomSounds[1]);
         //FADEOUT START
         Player.transform.GetComponent<GridMovement>().StopInput();
         backgroundAnimationPlayer.Play();
@@ -50,7 +52,8 @@ public class RoomProgressLogic : MonoBehaviour
         oneTimeParticles = false;
         //FADEOUT END
         yield return new WaitForSeconds(2.0f);
-        Sacrificer.SetActive(true);
+        startRoom.PlayOneShot(roomSounds[0]);
+        Sacrificer.GetComponent<Canvas>().enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,6 +71,8 @@ public class RoomProgressLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startRoom = GetComponent<AudioSource>();
+        startRoom.PlayOneShot(roomSounds[0]);
         OpenDoor =GetComponent<ParticleSystem>();
         roomText = GetComponentInChildren<Text>();
     }

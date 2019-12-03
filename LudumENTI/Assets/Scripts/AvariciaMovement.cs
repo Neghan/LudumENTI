@@ -91,7 +91,7 @@ public class AvariciaMovement : MonoBehaviour
         DownRightCell2 = new Vector3Int(currentCell.x + 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Derechax2
         DownDownRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - 2 * Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajox2-Derecha
         RightCell2 = new Vector3Int(currentCell.x + 2 * Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derechax2
-        RightDownCell2 = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Derecha-Abajo 
+        //RightDownCell2 = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Derecha-Abajo 
        
         
         

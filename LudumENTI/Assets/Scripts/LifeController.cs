@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class LifeController : MonoBehaviour
 {
+    public Image cooldownProgress;
     public Image[] hearts;
     public GridMovement vidaPJ;
     private int life;
     public Color lifeG;
     public Color lifeB;
+
+    public void CoolDownRepresentation()
+    {
+        cooldownProgress.fillAmount = vidaPJ.GetCoolDown()/ vidaPJ.movementCoolDown;
+    }
 
     void ChangeLives()
     {
@@ -62,6 +68,7 @@ public class LifeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CoolDownRepresentation();
         life = vidaPJ.GetLife();
         ChangeLives();
     }

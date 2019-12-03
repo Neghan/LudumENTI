@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GridMovement : MonoBehaviour
 {
+    //0: step // 1: attack //2: damage
+    public AudioClip[] playerAClips;
+    private AudioSource audioSourcePlayer;
+
     public GameObject particlesDamage;
     [Range(0, 8)]
     public int rows;
 
     [Range(0, 7)]
     public int columns;
+
 
     public GameObject attackPlayer;
     public GameObject CegueraDer;
@@ -39,6 +44,7 @@ public class GridMovement : MonoBehaviour
 
     private SpriteRenderer mySprite;
 
+    public GameObject UIGround;
     public GameObject Player;
     public List<Sprite> PlayerSprites;
 
@@ -62,6 +68,10 @@ public class GridMovement : MonoBehaviour
         life = 3;
     }
 
+    public float GetCoolDown()
+    {
+        return coolDown;
+    }
 
     public void SetLocation(Vector3Int Location)
     {
@@ -86,21 +96,25 @@ public class GridMovement : MonoBehaviour
             case 1:
                 goToCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
                 Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[2];
+                UIGround.GetComponent<DirectionControl>().RotatorDirectionsUIGround(1);
                 break;
 
             case 2:
                 goToCell = new Vector3Int(currentCell.x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo
                 Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[0];
+                UIGround.GetComponent<DirectionControl>().RotatorDirectionsUIGround(2);
                 break;
             case 3:
                 goToCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); // Derecha
                 Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[3];
-                
+                UIGround.GetComponent<DirectionControl>().RotatorDirectionsUIGround(3);
+
                 break;
 
             case 0:
                 goToCell = new Vector3Int(currentCell.x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba
                 Player.GetComponent<SpriteRenderer>().sprite = PlayerSprites[1];
+                UIGround.GetComponent<DirectionControl>().RotatorDirectionsUIGround(0);
                 break;
 
             default:
@@ -118,7 +132,6 @@ public class GridMovement : MonoBehaviour
     {
         currentCell = myGrid.WorldToCell(transform.position);
 
-
         Vector3Int LeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y, currentCell.z); //Izquierda
         Vector3Int DownCell = new Vector3Int(currentCell.x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo
         Vector3Int DownLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y - Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); //Abajo-Izquierda
@@ -129,8 +142,9 @@ public class GridMovement : MonoBehaviour
         Vector3Int UpLeftCell = new Vector3Int(currentCell.x - Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Izquierda
         Vector3Int UpRightCell = new Vector3Int(currentCell.x + Vector3Int.CeilToInt(myGrid.cellSize).x, currentCell.y + Vector3Int.CeilToInt(myGrid.cellSize).y, currentCell.z); // Arriba-Derecha
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&& canMove)
         {
+            audioSourcePlayer.PlayOneShot(playerAClips[1]);
             switch (direction)
             {
                 case 1: //Atacar a la izquierda
@@ -279,15 +293,17 @@ public class GridMovement : MonoBehaviour
 
     public void TakeDamage()
     {
-        
-            life--;
+        audioSourcePlayer.PlayOneShot(playerAClips[2]);
+        life--;
             Instantiate(particlesDamage, transform.position, Quaternion.identity);
             StartCoroutine(parpadeoDamage());
             if (life <= 0)
             {
-                Destroy(this.gameObject);
+                audioSourcePlayer.PlayOneShot(playerAClips[3]);
+                enabledInput = false;
                 Gameover_GO.SetActive(true);
-            }
+                
+        }
         
     }
 
@@ -296,6 +312,7 @@ public class GridMovement : MonoBehaviour
         //left
         if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable())
         {
+            audioSourcePlayer.PlayOneShot(playerAClips[0]);
             //left
             if (Input.GetKeyDown(KeyCode.A) && canMove && checkCollisionTileTypeWalkable() && !sacrificioPiernaIzquierda)
             {
@@ -316,6 +333,7 @@ public class GridMovement : MonoBehaviour
         //right
         else if (Input.GetKeyDown(KeyCode.D) && canMove && !sacrificioPiernaDerecha)
         {
+            audioSourcePlayer.PlayOneShot(playerAClips[0]);
             //Move the player to the right cell position;
             currentCell = myGrid.WorldToCell(transform.position);
              
@@ -331,6 +349,7 @@ public class GridMovement : MonoBehaviour
         //up
         else if (Input.GetKeyDown(KeyCode.W) && canMove)
         {
+            audioSourcePlayer.PlayOneShot(playerAClips[0]);
             //Move the player to the up cell position;
             currentCell = myGrid.WorldToCell(transform.position);
 
@@ -340,6 +359,7 @@ public class GridMovement : MonoBehaviour
         //down
         else if (Input.GetKeyDown(KeyCode.S) && canMove)
         {
+            audioSourcePlayer.PlayOneShot(playerAClips[0]);
             //Move the player to the down cell position;
             currentCell = myGrid.WorldToCell(transform.position);
             int nuevadireccion = 0;
@@ -410,13 +430,17 @@ public class GridMovement : MonoBehaviour
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Enemy")
-            {
-                life--;
-
-                if (life <= 0)
+        if (collision.gameObject.tag == "Enemy") { 
+                if (collision.GetComponent<ReceiveDamage>().GetLife() <= 0)
                 {
-                   Gameover_GO.SetActive(true); 
+                    audioSourcePlayer.PlayOneShot(playerAClips[2]);
+                    Instantiate(particlesDamage, transform.position, Quaternion.identity);
+                    life--;
+
+                    if (life <= 0)
+                    {
+                        Gameover_GO.SetActive(true);
+                    }
                 }
             }
         }
@@ -474,6 +498,7 @@ public class GridMovement : MonoBehaviour
 
         void Start()
         {
+        audioSourcePlayer = GetComponent<AudioSource>();
         mySprite = GetComponentInChildren<SpriteRenderer>();
             //Posicionar al player en la posición inicial.
             transform.position = myGrid.GetCellCenterWorld(startPlayerPos);

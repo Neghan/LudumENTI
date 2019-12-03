@@ -13,6 +13,26 @@ public class DirectionControl : MonoBehaviour
     public Color AvailableDirectons;
     public Color UnavailableDirections;
 
+    public void RotatorDirectionsUIGround(int direction)
+    {
+     
+        switch (direction)
+        {
+            case 1://IZQ
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                break;
+            case 2://ABAJO
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                break;
+            case 3://DCHA
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                break;
+            case 0://ARRIBA
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                break;
+        }
+        
+    }
     private void CheckWhereDirections()
     {
         if (refToParentScript.sacrificioPiernaIzquierda)

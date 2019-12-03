@@ -7,7 +7,10 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject credits_GO;
-
+    public AudioSource playSound;
+    public AudioSource creditsSound;
+    public AudioSource QuitSound;
+    bool selectedPlay;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,24 +22,39 @@ public class MainMenu : MonoBehaviour
     {
         
     }
-
+    IEnumerator PlayGameCoroutine()
+    {
+        playSound.Play();
+        yield return new WaitForSeconds(2.2f);
+        SceneManager.LoadScene("SampleScene");
+    }
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
-
+        if (!selectedPlay)
+        {
+            selectedPlay = true;
+            StartCoroutine(PlayGameCoroutine());
+        }
+        
     } 
     public void QuitGame()
     {
-        Application.Quit();
+        QuitSound.Play();
+        if (!selectedPlay)
+            Application.Quit();
     }
 
     public void Credits()
     {
-        credits_GO.SetActive(true);
+        creditsSound.Play();
+        if (!selectedPlay)
+            credits_GO.SetActive(true);
     }
     public void CloseCredits()
     {
-        credits_GO.SetActive(false);
+        creditsSound.Play();
+        if (!selectedPlay)
+            credits_GO.SetActive(false);
     }
 
 }
