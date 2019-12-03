@@ -71,7 +71,11 @@ public class IraMovement : MonoBehaviour
     private GameObject player;
     Vector3Int playerPos;
 
+    public AudioClip[] akSounds;
+    private AudioSource m_audioSource;
 
+    private bool walk = false;
+    private bool Cry = false;
 
     private Vector3Int WhereIsPlayer()
     {
@@ -161,6 +165,12 @@ public class IraMovement : MonoBehaviour
     {
         if (!Attacking)
         {
+            if (!walk && !AlreadyAttack && !AlreadyAttack&&Cry)
+            {
+                m_audioSource.PlayOneShot(akSounds[Random.Range(3, 4)]);///Walk
+                walk = true;
+            }
+
             currentCell = myGrid.WorldToCell(transform.position);
             //left
             // Debug.Log(Vector3.Distance(player.GetComponent<GridMovement>().transform.position, transform.position));
@@ -260,7 +270,11 @@ public class IraMovement : MonoBehaviour
                     GO3 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(Upx2LeftCell), transform.rotation);
                     GO4 = Instantiate(attackEnemy, myGrid.GetCellCenterWorld(Upx2RightCell), transform.rotation);
                 }
-                
+
+                ///Solo para que no suene el andar cuando ataca
+                walk = true;
+                m_audioSource.PlayOneShot(akSounds[0]);///Attack
+
                 Attacking = false;
                 AlreadyWarning = false;
                 AlreadyAttack = false;
@@ -318,6 +332,7 @@ public class IraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_audioSource = this.GetComponent<AudioSource>();
         player = GameObject.Find("Player");
         myGrid = GameObject.Find("Room").GetComponent<Grid>();
         coolDown = 0.0f;
@@ -326,21 +341,28 @@ public class IraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(this.GetComponent<ReceiveDamage>().GetLife()<=0)
+        if (player.GetComponent<GridMovement>().enabledInput && !Cry)
         {
+            m_audioSource.PlayOneShot(akSounds[1]);///Grito
+            Cry = true;
+        }
+
+        if (this.GetComponent<ReceiveDamage>().GetLife()<=0)
+        {
+            Attacking = false;
+            m_audioSource.PlayOneShot(akSounds[2]);///Death
             Destroy(GO.gameObject);
             Destroy(GO2.gameObject);
             Destroy(GO3.gameObject);
             Destroy(GO4.gameObject);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,4.0f);
         }
 
         if (player != null)
         {
             if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
             {
-
+                walk = false;
                 goToCell = currentCell + WhereIsPlayer();
                 coolDown = movementCoolDown;
 
