@@ -327,9 +327,18 @@ public class IraMovement : MonoBehaviour
     void Update()
     {
 
+        if(this.GetComponent<ReceiveDamage>().GetLife()<=0)
+        {
+            Destroy(GO.gameObject);
+            Destroy(GO2.gameObject);
+            Destroy(GO3.gameObject);
+            Destroy(GO4.gameObject);
+            Destroy(this.gameObject);
+        }
+
         if (player != null)
         {
-            if (!player.GetComponent<GridMovement>().canMove && canMove)
+            if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
             {
 
                 goToCell = currentCell + WhereIsPlayer();

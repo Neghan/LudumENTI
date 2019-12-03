@@ -33,7 +33,7 @@ public class LujuriaMovement : MonoBehaviour
     private bool showWarning = false;
     public GameObject attackEnemy;
     public GameObject warningEnemy;
-    GameObject GO, GO2, GO3, GO4, GO5, GO6, GO7, GO8;
+    GameObject GO, GO2, GO3, GO7;
     Vector3Int LeftCell; //Izquierda
     Vector3Int DownCell; //Abajo
     Vector3Int DownLeftCell; //Abajo-Izquierda
@@ -205,9 +205,16 @@ public class LujuriaMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
 
-        if (!player.GetComponent<GridMovement>().canMove && canMove)
+        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
+        {
+
+            Destroy(GO2.gameObject);
+            Destroy(GO7.gameObject);
+            Destroy(this.gameObject);
+        }
+
+        if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
         {
                         
             goToCell = currentCell + WhereIsPlayer();

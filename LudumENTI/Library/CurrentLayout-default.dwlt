@@ -21,7 +21,11 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
+<<<<<<< HEAD
   m_MinSize: {x: 950, y: 300}
+=======
+  m_MinSize: {x: 950, y: 494}
+>>>>>>> master
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -113,10 +117,14 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 913, y: 422}
-  m_MaxSize: {x: 22008, y: 10022}
+  m_MinSize: {x: 915, y: 444}
+  m_MaxSize: {x: 22010, y: 10022}
   vertical: 0
+<<<<<<< HEAD
   controlID: 112
+=======
+  controlID: 4905
+>>>>>>> master
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,10 +146,14 @@ MonoBehaviour:
     y: 0
     width: 829
     height: 947
-  m_MinSize: {x: 202, y: 422}
-  m_MaxSize: {x: 4002, y: 8022}
+  m_MinSize: {x: 202, y: 444}
+  m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
+<<<<<<< HEAD
   controlID: 37
+=======
+  controlID: 4880
+>>>>>>> master
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -395,7 +407,11 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 1.3312644, y: 3.8555298, z: -1.359375}
     speed: 2
+<<<<<<< HEAD
     m_Value: {x: 1.3312644, y: 3.8555298, z: -1.359375}
+=======
+    m_Value: {x: 0.0034999847, y: 7.915, z: 0}
+>>>>>>> master
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -430,7 +446,11 @@ MonoBehaviour:
   m_Size:
     m_Target: 12.941688
     speed: 2
+<<<<<<< HEAD
     m_Value: 13.551505
+=======
+    m_Value: 4.8501186
+>>>>>>> master
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -574,7 +594,11 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
+<<<<<<< HEAD
   m_LastSelectedObjectID: 13766
+=======
+  m_LastSelectedObjectID: 14728
+>>>>>>> master
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -635,9 +659,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 30530000
       m_LastClickedID: 0
       m_ExpandedIDs: 74fbffff74350000
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: c8faffff
+>>>>>>> master
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -700,20 +730,34 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/SFX2
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/SFX2
+=======
+    - Assets/Scripts
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scripts
+>>>>>>> master
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: F:\ENTI_Ludum\LudumENTI\LudumENTI
+  m_LastProjectPath: E:\Uni\Asignaturas\Curs4\GameJamJaumeAndreu\LudumENTI\LudumENTI
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 00530000
     m_LastClickedID: 21248
     m_ExpandedIDs: 00000000da2d00001031000080320000303300000053000000ca9a3b
+=======
+    m_SelectedIDs: 68370000
+    m_LastClickedID: 14184
+    m_ExpandedIDs: 0000000084320000ba350000043700002a370000da370000ead6000000ca9a3b
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -741,7 +785,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000da2d0000103100008032000030330000
+=======
+    m_ExpandedIDs: 0000000084320000ba3500002a370000da37000000ca9a3b
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -768,8 +816,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: 84310000ba3e000000000000dcfc0000e4fc0000ecfc000070320000742e000078350000d23200006a7a0100
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: 84310000ba3e000000000000dcfc0000e4fc0000ecfc000070320000742e000078350000d23200006a7a010030330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -19,10 +19,7 @@ public class ReceiveDamage : MonoBehaviour
     public void TakeDamage()
     {
         life--;
-        if (life <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
     // Update is called once per frame
     void Update()
