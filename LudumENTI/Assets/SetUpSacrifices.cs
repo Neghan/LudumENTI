@@ -5,12 +5,12 @@ using UnityEngine;
 public class SetUpSacrifices : MonoBehaviour
 {
 
-    private ButtonData[] childrenSacrificeButtons;
+    public  ButtonData[] childrenSacrificeButtons;
 
     private int lastRandom = 0;
     private int currentRandom = 0;
 
-    private void SetUpChildrensID()
+    public void SetUpChildrensID()
     {
        
         foreach (ButtonData childrenSac in childrenSacrificeButtons){

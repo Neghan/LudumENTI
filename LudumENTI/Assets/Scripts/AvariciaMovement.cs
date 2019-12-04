@@ -72,6 +72,8 @@ public class AvariciaMovement : MonoBehaviour
     private AudioSource m_audioSource;
     private bool walk=false;
     private bool Cry=false;
+    private bool oneDeath;
+
 
     private Vector3Int WhereIsPlayer()
     {
@@ -327,7 +329,7 @@ public class AvariciaMovement : MonoBehaviour
         }
 
 
-        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
+        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0 && !oneDeath)
         {
             Attacking = false;
             m_audioSource.PlayOneShot(akSounds[2]);///Death
@@ -348,6 +350,7 @@ public class AvariciaMovement : MonoBehaviour
             Destroy(GO15.gameObject);
             Destroy(GO16.gameObject);
             Destroy(this.gameObject,4.0f);
+            oneDeath = true;
         }
 
         if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)

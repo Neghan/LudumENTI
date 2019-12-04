@@ -54,6 +54,7 @@ public class RoomProgressLogic : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         startRoom.PlayOneShot(roomSounds[0]);
         Sacrificer.GetComponent<Canvas>().enabled = true;
+        Sacrificer.GetComponent<Sacrificer>().RandomSacrifices();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

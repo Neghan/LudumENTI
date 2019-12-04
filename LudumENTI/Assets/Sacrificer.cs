@@ -8,6 +8,17 @@ public class Sacrificer : MonoBehaviour
     private AudioSource audioSacrifice;
     public List<ButtonData> ListSacrifices = new List<ButtonData>();
     public GridMovement player;
+    public SetUpSacrifices sacrificerSetup;
+
+    public void RandomSacrifices()
+    {
+        sacrificerSetup.SetUpChildrensID();
+        foreach( ButtonData button in ListSacrifices)
+        {
+            button.SpawnRandomSac();
+        }
+    }
+
     public void Sacrifice1()
     {
         //ListSacrifices[0].idType;
@@ -39,6 +50,7 @@ public class Sacrificer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RandomSacrifices();
         audioSacrifice = GetComponent<AudioSource>();
         
     }

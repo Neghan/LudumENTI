@@ -88,6 +88,7 @@ public class OrgulloMovement : MonoBehaviour
 
     private bool walk = false;
     private bool Cry = false;
+    private bool oneDeath;
 
     private Vector3Int WhereIsPlayer()
     {
@@ -400,7 +401,7 @@ public class OrgulloMovement : MonoBehaviour
             m_audioSource.PlayOneShot(akSounds[1]);///Grito
             Cry = true;
         }
-        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0)
+        if (this.GetComponent<ReceiveDamage>().GetLife() <= 0 && !oneDeath)
         {
             Attacking = false;
             m_audioSource.PlayOneShot(akSounds[2]);///Death
@@ -412,6 +413,7 @@ public class OrgulloMovement : MonoBehaviour
             Destroy(GO6.gameObject);
             Destroy(GO7.gameObject);
             Destroy(this.gameObject,4.0f);
+            oneDeath = true;
         }
 
         if (player.GetComponent<GridMovement>().enabledInput && !player.GetComponent<GridMovement>().canMove && canMove)
