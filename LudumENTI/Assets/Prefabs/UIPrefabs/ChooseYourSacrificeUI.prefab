@@ -1113,7 +1113,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1732,13 +1732,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c9ab9aa0a29c4c54cab251f1528d9921,
         type: 3}
-    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Left Leg
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 9170332426795571551, guid: f0d6216a961e6dc4192783919eb993cb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1888,6 +1881,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 34.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Left Leg
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d6216a961e6dc4192783919eb993cb, type: 3}
@@ -2060,11 +2060,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
-        type: 3}
-      propertyPath: m_Text
-      value: Right Arm
-      objectReference: {fileID: 0}
     - target: {fileID: 9170332426795571551, guid: f0d6216a961e6dc4192783919eb993cb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2214,6 +2209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 34.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
+        type: 3}
+      propertyPath: m_Text
+      value: Right Arm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d6216a961e6dc4192783919eb993cb, type: 3}
