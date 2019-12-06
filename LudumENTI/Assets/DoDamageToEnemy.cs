@@ -6,6 +6,10 @@ public class DoDamageToEnemy : MonoBehaviour
 {
     private GameObject enemy;
     private bool Damage = false;
+
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +35,6 @@ public class DoDamageToEnemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+         
     }
 }

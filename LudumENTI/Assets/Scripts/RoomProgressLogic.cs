@@ -23,6 +23,7 @@ public class RoomProgressLogic : MonoBehaviour
 
     public string[] enemiesNames;
 
+
     IEnumerator GoDownRoom()
     {
         startRoom.PlayOneShot(roomSounds[1]);
@@ -40,21 +41,25 @@ public class RoomProgressLogic : MonoBehaviour
         Player.transform.GetComponent<GridMovement>().SetLocation(new Vector3Int(0,-4,0));
         
         Player.transform.Translate(new Vector3Int(0,-4,0));
-        
+
         //Player.transform.GetComponent<GridMovement>().ResetLife();
-        
-        Enemy = Instantiate(ALLEnemies[corruptLevel]);
+
+       
+           
+            Enemy = Instantiate(ALLEnemies[corruptLevel]);
+       
 
 
-        
+
         availableToGoDown = false;
-        OpenDoor.Stop();
-        oneTimeParticles = false;
-        //FADEOUT END
-        yield return new WaitForSeconds(2.0f);
-        startRoom.PlayOneShot(roomSounds[0]);
-        Sacrificer.GetComponent<Canvas>().enabled = true;
-        Sacrificer.GetComponent<Sacrificer>().RandomSacrifices();
+            OpenDoor.Stop();
+            oneTimeParticles = false;
+            //FADEOUT END
+            yield return new WaitForSeconds(2.0f);
+            startRoom.PlayOneShot(roomSounds[0]);
+            Sacrificer.GetComponent<Canvas>().enabled = true;
+            Sacrificer.GetComponent<Sacrificer>().RandomSacrifices();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

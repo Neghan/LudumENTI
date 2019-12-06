@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
+    public GameObject END;
     // Start is called before the first frame update
     public void PlayAgain()
     {
@@ -18,7 +19,7 @@ public class EndGame : MonoBehaviour
 
     void Start()
     {
-        
+        END.SetActive(false);
     }
 
     // Update is called once per frame

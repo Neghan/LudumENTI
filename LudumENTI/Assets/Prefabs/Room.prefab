@@ -2106,12 +2106,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 85d193400ea686c428d4d935f20e2f1b, type: 3}
   - {fileID: 21300000, guid: 7b18466548a424946b726e867fe9e953, type: 3}
   - {fileID: 21300000, guid: 3458434c1468849458d0292485b9e718, type: 3}
+  - {fileID: 21300000, guid: 3458434c1468849458d0292485b9e718, type: 3}
   OpenDoors:
   - {fileID: 21300000, guid: c0b68497f3e11b0408d5538d8ccf8b81, type: 3}
   - {fileID: 21300000, guid: c0a1f40209ec6db46bace2cdaf3f1deb, type: 3}
   - {fileID: 21300000, guid: b6f6b30571e0c514983533b352dea36e, type: 3}
   - {fileID: 21300000, guid: 98dcc5a94d3e24545a7a7647edf3ec9b, type: 3}
   - {fileID: 21300000, guid: 9dd71b9fdfa109b4697bbcba46610137, type: 3}
+  - {fileID: 21300000, guid: 3b2a3d032330090469dfa71bebebab6e, type: 3}
   - {fileID: 21300000, guid: 3b2a3d032330090469dfa71bebebab6e, type: 3}
   FrontalFenceCorruptions:
   - {fileID: 21300000, guid: edb114ae8d0f7d44ab9dec066c9a632d, type: 3}
@@ -2120,12 +2122,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2426b719fda4a4e4085a6707b1b04b66, type: 3}
   - {fileID: 21300000, guid: 3051bffa9a96577479fe41f994f2a95a, type: 3}
   - {fileID: 21300000, guid: 98db17e7718a5ef40a6c18e11b1ee432, type: 3}
+  - {fileID: 21300000, guid: 98db17e7718a5ef40a6c18e11b1ee432, type: 3}
   LateralFenceCorruptions:
   - {fileID: 21300000, guid: 35577c5d20716264e8993e73429c8c8a, type: 3}
   - {fileID: 21300000, guid: 7cb2de3b16df651468eccbb21ad00683, type: 3}
   - {fileID: 21300000, guid: 616d6c05ef480804b9f0cd45d81ad4c8, type: 3}
   - {fileID: 21300000, guid: 6909601f6ba1b70419b1cf50c2d1ca10, type: 3}
   - {fileID: 21300000, guid: 9462d04764e991b4091181ea5849b494, type: 3}
+  - {fileID: 21300000, guid: d4ebf508a69ea7b4aa3efbc46a1b913e, type: 3}
   - {fileID: 21300000, guid: d4ebf508a69ea7b4aa3efbc46a1b913e, type: 3}
   ColorCorruptions:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -2134,6 +2138,8 @@ MonoBehaviour:
   - {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   - {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  endGame: {fileID: 0}
 --- !u!82 &85307827
 AudioSource:
   m_ObjectHideFlags: 0
