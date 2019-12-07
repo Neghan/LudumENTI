@@ -268,8 +268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.3, y: 32.85}
-  m_SizeDelta: {x: 117.54, y: 124.65}
+  m_AnchoredPosition: {x: -57.4, y: 3.6}
+  m_SizeDelta: {x: 73.86, y: 78.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3224612412727664516
 CanvasRenderer:
@@ -459,8 +459,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.6, y: 28.08}
-  m_SizeDelta: {x: 117.54, y: 124.65}
+  m_AnchoredPosition: {x: 44.1, y: -28.4}
+  m_SizeDelta: {x: 71.42, y: 75.735}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8174459236550561009
 CanvasRenderer:
@@ -820,7 +820,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 56142356b5e47e84fa3568ea8d7135df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80c3f31ee16da994fa18f7bc5f64034b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1732,6 +1732,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c9ab9aa0a29c4c54cab251f1528d9921,
         type: 3}
+    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Left Leg
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 9170332426795571551, guid: f0d6216a961e6dc4192783919eb993cb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1881,13 +1888,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 34.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Left Leg
-
-'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d6216a961e6dc4192783919eb993cb, type: 3}
@@ -2060,6 +2060,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
+        type: 3}
+      propertyPath: m_Text
+      value: Right Arm
+      objectReference: {fileID: 0}
     - target: {fileID: 9170332426795571551, guid: f0d6216a961e6dc4192783919eb993cb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2209,11 +2214,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 34.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4368613037935340914, guid: f0d6216a961e6dc4192783919eb993cb,
-        type: 3}
-      propertyPath: m_Text
-      value: Right Arm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d6216a961e6dc4192783919eb993cb, type: 3}

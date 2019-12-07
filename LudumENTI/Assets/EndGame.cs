@@ -18,8 +18,7 @@ public class EndGame : MonoBehaviour
     }
 
     void Start()
-    {
-        END.SetActive(false);
+    { 
     }
 
     // Update is called once per frame

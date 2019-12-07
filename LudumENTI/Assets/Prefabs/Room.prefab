@@ -2139,7 +2139,6 @@ MonoBehaviour:
   - {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
-  endGame: {fileID: 0}
 --- !u!82 &85307827
 AudioSource:
   m_ObjectHideFlags: 0

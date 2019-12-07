@@ -32,8 +32,7 @@ public class RoomController : MonoBehaviour
     //Colores de Corrupciones (Suelo y Nubes)
     public Color[] ColorCorruptions;
 
-
-    public GameObject endGame;
+     
 
     //Cambia los colores de las nubes y Tiles
     private void ChangeCorruptionColor()
@@ -56,9 +55,8 @@ public class RoomController : MonoBehaviour
     {
         whichCorruptionLevel =(whichCorruptionLevel + 1)%7;
         ConvertToCorruption(whichCorruptionLevel);
-        if(whichCorruptionLevel == 6)
-        {
-            endGame.SetActive(true);
+        if(whichCorruptionLevel >= 6)
+        { 
         }
     }
 
