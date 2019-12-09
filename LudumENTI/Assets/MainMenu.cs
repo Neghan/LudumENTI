@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject credits_GO;
+    public GameObject controls_GO;
     public AudioSource playSound;
     public AudioSource creditsSound;
     public AudioSource QuitSound;
@@ -15,6 +16,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         credits_GO.SetActive(false);
+        controls_GO.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,11 +52,23 @@ public class MainMenu : MonoBehaviour
         if (!selectedPlay)
             credits_GO.SetActive(true);
     }
+    public void Controls()
+    {
+        creditsSound.Play();
+        if (!selectedPlay)
+            controls_GO.SetActive(true);
+    }
     public void CloseCredits()
     {
         creditsSound.Play();
         if (!selectedPlay)
             credits_GO.SetActive(false);
+    }
+    public void CloseControls()
+    {
+        creditsSound.Play();
+        if (!selectedPlay)
+            controls_GO.SetActive(false);
     }
 
 }

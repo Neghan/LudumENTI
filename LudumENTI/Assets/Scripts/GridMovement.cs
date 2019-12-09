@@ -276,6 +276,7 @@ public class GridMovement : MonoBehaviour
                     break;
 
             }
+            canMove = false;
         }
 
     }
